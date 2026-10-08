@@ -1,0 +1,44 @@
+MIT License — code
+
+Copyright (c) 2026 YUECHENCUI (Kit)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-------------------------------------------------------------------------------
+Music, logo and brand artwork
+
+The original music in assets/music/ (theme sting, bed loop, outro hit, clink
+SFX, demo, and the compose.py that synthesizes them) and the logos in assets/
+(logo_coffee.svg, logo.svg) are original works by the author, released under
+the Creative Commons Attribution 4.0 International License (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/
+Attribution: "脆脆的AI早咖啡 / crispy-ai-coffee by YUECHENCUI".
+
+-------------------------------------------------------------------------------
+Third-party content
+
+- Fonts are NOT distributed in this repository; setup.sh installs Noto CJK
+  (apt) and Inter Tight, JetBrains Mono, Instrument Serif (Google Fonts),
+  all under the SIL Open Font License 1.1.
+- News facts, quotes, figures and links in examples/ and in any brief.json
+  belong to their original sources and publishers.
+- Official images/videos downloaded at run time into output/<date>/media/ remain
+  the property of their rights holders and are not part of this repository.
+- Speech is synthesized at run time via Microsoft Edge online TTS (edge-tts);
+  check the applicable terms before commercial use.

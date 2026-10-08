@@ -1,0 +1,58 @@
+{#- WeChat 公众号-safe HTML: inline styles only, no <style>/<script>, no external fonts, no flex-dependent layout. -#}
+{%- set INK = '#0B0D12' -%}{%- set SUN = '#FF5A1F' -%}{%- set PAPER = '#F4F1EA' -%}{%- set MIST = '#8B93A1' -%}
+{%- set SERIF = "'Noto Serif SC','Songti SC','STSong',serif" -%}
+{%- set SANS = "-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" -%}
+{%- set MONO = "Menlo,Consolas,'JetBrains Mono',monospace" -%}
+<section style="max-width:677px;margin:0 auto;padding:0;font-family:{{ SANS }};color:#1F2329;font-size:15px;line-height:1.8;letter-spacing:0.5px;background:#FFFFFF;">
+  <!-- masthead -->
+  <section style="background:{{ INK }};border-radius:14px;padding:26px 22px 24px 22px;margin:0 0 22px 0;">
+    <section style="margin:0 0 18px 0;">
+      <span style="display:inline-block;vertical-align:middle;width:34px;height:17px;border-radius:34px 34px 0 0;background:linear-gradient(180deg,#FFB38A 0%,{{ SUN }} 70%);border-bottom:3px solid {{ PAPER }};"></span>
+      <span style="display:inline-block;vertical-align:middle;margin-left:10px;font-family:{{ SERIF }};font-weight:700;font-size:22px;color:{{ PAPER }};letter-spacing:1px;">AI<span style="color:{{ SUN }};">早报</span></span>
+      <span style="display:inline-block;vertical-align:middle;margin-left:8px;font-family:{{ MONO }};font-size:10px;color:{{ MIST }};letter-spacing:3px;">MORNING BRIEF</span>
+    </section>
+    <section style="display:inline-block;border:1px solid {{ SUN }};border-radius:999px;padding:2px 12px;font-family:{{ MONO }};font-size:12px;color:{{ PAPER }};letter-spacing:1px;margin:0 0 14px 0;">
+      <span style="color:{{ SUN }};">●</span> {{ b._date_dot }} {{ b._weekday }} · No.{{ '%03d' % b._issue_no }}
+    </section>
+    <p style="margin:0 0 14px 0;font-family:{{ SERIF }};font-weight:700;font-size:23px;line-height:1.45;color:#FFFFFF;letter-spacing:0.5px;">{{ b.headline }}</p>
+    <p style="margin:0;font-size:14px;line-height:1.75;color:#B9BFCA;"><span style="color:{{ SUN }};font-weight:700;">今日导读｜</span>{{ b.lede }}</p>
+  </section>
+
+  <!-- index -->
+  <section style="border:1px solid #ECE7DC;background:#FBFAF6;border-radius:12px;padding:14px 18px;margin:0 0 26px 0;">
+    <p style="margin:0 0 6px 0;font-family:{{ MONO }};font-size:11px;color:{{ MIST }};letter-spacing:3px;">IN THIS ISSUE · 本期 {{ b['items']|length }} 条</p>
+    {%- set n = namespace(i=0) %}
+    {%- for cat in cats %}{% for it in b['items'] if it.category == cat %}{% set n.i = n.i + 1 %}
+    <p style="margin:0;font-size:14px;line-height:1.9;color:#2B2F36;"><span style="font-family:{{ MONO }};color:{{ SUN }};font-weight:700;">{{ '%02d' % n.i }}</span>&nbsp;&nbsp;<span style="color:{{ C[cat].color }};font-size:12px;">{{ C[cat].zh }}</span>&nbsp;&nbsp;{{ it.title }}</p>
+    {%- endfor %}{% endfor %}
+  </section>
+
+  {%- set n = namespace(i=0) %}
+  {%- for cat in cats %}{% set group = b['items'] | selectattr('category', 'equalto', cat) | list %}{% if group %}
+  <!-- section: {{ cat }} -->
+  <section style="margin:30px 0 14px 0;border-left:4px solid {{ C[cat].color }};padding:0 0 0 10px;">
+    <span style="font-family:{{ SERIF }};font-weight:700;font-size:19px;color:{{ INK }};">{{ C[cat].zh }}</span>
+    <span style="font-family:{{ MONO }};font-size:11px;color:{{ C[cat].color }};letter-spacing:3px;margin-left:6px;">{{ C[cat].en }}</span>
+  </section>
+  {%- for it in group %}{% set n.i = n.i + 1 %}
+  <section style="margin:0 0 22px 0;padding:0 0 20px 0;border-bottom:1px dashed #E3DED3;">
+    <p style="margin:0 0 8px 0;font-size:18px;line-height:1.5;font-weight:700;color:{{ INK }};"><span style="font-family:{{ MONO }};color:{{ SUN }};margin-right:8px;">{{ '%02d' % n.i }}</span>{{ it.title }}</p>
+    {%- if it.key_stat %}
+    <p style="margin:0 0 10px 0;"><span style="display:inline-block;background:{{ INK }};color:{{ SUN }};font-family:{{ MONO }};font-weight:700;font-size:15px;padding:2px 10px;border-radius:6px;">{{ it.key_stat.value }}</span><span style="font-size:12px;color:{{ MIST }};margin-left:8px;">{{ it.key_stat.label }}</span></p>
+    {%- endif %}
+    <p style="margin:0 0 10px 0;text-align:justify;">{{ it.summary }}</p>
+    <p style="margin:0 0 10px 0;padding:10px 12px;background:#FFF4EE;border-radius:8px;font-size:14px;line-height:1.75;color:#3A2A22;"><span style="color:{{ SUN }};font-weight:700;">为什么重要｜</span>{{ it.why }}</p>
+    {%- if it.heat %}
+    <p style="margin:0 0 6px 0;font-size:12px;line-height:1.7;color:{{ MIST }};">🔥 热度：{{ it.heat }}</p>
+    {%- endif %}
+    <p style="margin:0;font-size:11px;line-height:1.7;color:#A0A6B0;word-break:break-all;">来源：{% for s in it.sources %}{{ s.label }} <span style="font-family:{{ MONO }};">{{ s.url | replace('https://','') }}</span>{% if not loop.last %}<br/>{% endif %}{% endfor %}</p>
+  </section>
+  {%- endfor %}{% endif %}{% endfor %}
+
+  <!-- footer -->
+  <section style="margin:30px 0 0 0;background:{{ INK }};border-radius:14px;padding:20px 22px;text-align:center;">
+    <p style="margin:0 0 6px 0;font-family:{{ SERIF }};font-weight:700;font-size:17px;color:{{ PAPER }};">AI<span style="color:{{ SUN }};">早报</span> · 每天 07:00</p>
+    <p style="margin:0 0 10px 0;font-size:13px;color:#B9BFCA;line-height:1.7;">90 秒视频版见视频号「AI早报」</p>
+    <p style="margin:0;font-size:11px;color:{{ MIST }};line-height:1.7;">信息来自 X 热帖与公开报道，经交叉核对整理；“据报道”类内容尚未获当事方官方确认。覆盖时段 {{ b.coverage.from }} — {{ b.coverage.to }}（北京时间）。</p>
+  </section>
+</section>

@@ -1,0 +1,114 @@
+{
+  "issue_date": "YYYY-MM-DD",
+  "coverage": {
+    "from": "",
+    "to": "",
+    "tz": "Asia/Shanghai"
+  },
+  "headline": "TODO 当天最大的 1–2 件事，逗号隔开，≤26 字",
+  "lede": "TODO 一句话主线，≤45 字",
+  "items": [
+    {
+      "id": "TODO-kebab-id",
+      "category": "tech",
+      "title": "TODO 谁+做了什么，≤22 字",
+      "summary": "TODO 2–3 句：谁、何时、做了什么、关键数字；媒体爆料写“据《X》报道”",
+      "why": "TODO 1–2 句为什么重要 / 风险争议",
+      "key_stat": {
+        "value": "TODO ≤6字符",
+        "label": "TODO 数字含义"
+      },
+      "heat": "TODO @账号 X万赞 / Y万浏览",
+      "sources": [
+        {
+          "label": "TODO @X",
+          "url": "https://x.com/TODO"
+        },
+        {
+          "label": "TODO 官方/媒体",
+          "url": "https://TODO"
+        }
+      ]
+    }
+  ],
+  "video": {
+    "lede": "今天这杯偏TODO：TODO，TODO。",
+    "cover_title": [
+      "TODO 第1行 ≤9字",
+      "TODO 第2行 ≤9字(橙)"
+    ],
+    "cover_tags": [
+      "TODO",
+      "TODO",
+      "TODO",
+      "TODO",
+      "TODO"
+    ],
+    "scenes": [
+      {
+        "type": "title",
+        "narration": "早上好，我是脆脆——AI新闻现磨好了，趁热喝！今天这杯偏TODO：TODO，TODO。"
+      },
+      {
+        "type": "story",
+        "item": "TODO-kebab-id",
+        "headline": "TODO ≤10字",
+        "point": "TODO ≤20字",
+        "narration": "TODO 事实句。TODO 数字句。锐评：TODO ≤16字。",
+        "take": "TODO ≤20字",
+        "media": {
+          "type": "video",
+          "url": "https://video.twimg.com/TODO.mp4",
+          "page": "https://x.com/TODO/status/TODO",
+          "credit": "TODO @X 官方视频",
+          "start": 0,
+          "fit": "cover"
+        }
+      },
+      {
+        "type": "story",
+        "item": "TODO-id-2",
+        "headline": "TODO",
+        "point": "TODO",
+        "narration": "下一口。TODO。锐评：TODO。",
+        "take": "TODO"
+      },
+      {
+        "type": "story",
+        "item": "TODO-id-3",
+        "headline": "TODO",
+        "point": "TODO",
+        "narration": "下一口。TODO。锐评：TODO。",
+        "take": "TODO"
+      },
+      {
+        "type": "story",
+        "item": "TODO-gossip-id",
+        "segment": "zha",
+        "headline": "TODO",
+        "point": "TODO",
+        "narration": "咖啡渣时间，今日一瓜！TODO（保留“称/据报道”）。锐评：TODO。",
+        "take": "TODO"
+      },
+      {
+        "type": "outro",
+        "narration": "咖啡见底，脑子醒了没？关注脆脆的AI早咖啡，明早八点，续杯！"
+      }
+    ]
+  },
+  "sph": {
+    "title": "TODO 6–16字短标题",
+    "description": [
+      "☕ 脆脆的AI早咖啡 · 第NNN杯 · MM.DD 周X",
+      "TODO 一句串起本期各条（分号隔开）",
+      "我是脆脆，每天早上 8 点，AI 新闻现磨好，趁热喝。"
+    ],
+    "hashtags": [
+      "#AI",
+      "#人工智能",
+      "#TODO公司或产品",
+      "#科技新闻",
+      "#脆脆的AI早咖啡"
+    ]
+  }
+}

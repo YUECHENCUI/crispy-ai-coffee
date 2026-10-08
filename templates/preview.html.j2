@@ -1,0 +1,39 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI早报 · {{ b._date_dot }} 审阅</title>
+<style>
+  body{margin:0;background:#0B0D12;color:#F4F1EA;font-family:"Noto Sans CJK SC","PingFang SC",sans-serif}
+  header{padding:28px 40px;border-bottom:1px solid rgba(244,241,234,.1);display:flex;align-items:center;gap:16px}
+  header h1{font-family:"Noto Serif CJK SC",serif;font-size:26px;margin:0}header h1 b{color:#FF5A1F}
+  header span{font-family:"JetBrains Mono",monospace;font-size:13px;color:#8B93A1;letter-spacing:.2em}
+  header button{margin-left:auto;background:#FF5A1F;color:#0B0D12;border:0;border-radius:999px;padding:12px 22px;font-weight:700;font-size:15px;cursor:pointer}
+  main{display:grid;grid-template-columns:420px 1fr;gap:40px;padding:36px 40px}
+  .phone{background:#fff;border-radius:36px;padding:18px 14px;border:10px solid #1C2230;height:820px;overflow:auto}
+  h2{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.24em;color:#8B93A1;font-weight:500;margin:0 0 14px}
+  .row{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start;margin-bottom:34px}
+  video{width:300px;border-radius:18px;background:#000}
+  img{border-radius:10px;display:block}
+  .script{max-width:620px;font-size:15px;line-height:1.9;color:#C9CED8}
+  .script p{margin:0 0 8px}.script em{font-style:normal;color:#FF5A1F;font-family:"JetBrains Mono",monospace;font-size:12px;margin-right:8px}
+  #toast{position:fixed;right:30px;bottom:30px;background:#F4F1EA;color:#0B0D12;padding:12px 18px;border-radius:10px;display:none}
+</style></head><body>
+<header><h1>AI<b>早报</b></h1><span>{{ b._date_dot }} · NO.{{ '%03d' % b._issue_no }} · 审阅页（不会发布）</span>
+  <button onclick="copyArticle()">复制公众号正文（富文本）</button></header>
+<main>
+  <section><h2>公众号正文 · 手机预览</h2><div class="phone" id="article">{{ article }}</div></section>
+  <section>
+    <h2>视频号 · 竖版 1080×1920</h2>
+    <div class="row"><video src="{{ video }}" controls playsinline>{% if srt %}{% endif %}</video>
+      <div class="script"><h2>口播稿</h2>{% for s in b.video.scenes %}<p><em>{{ '%02d' % loop.index0 }} {{ s.type|upper }}</em>{{ s.narration }}</p>{% endfor %}</div></div>
+    <h2>公众号封面 900×383 / 1:1 缩略图</h2>
+    <div class="row"><img src="cover_900x383.png" width="600"><img src="thumb_1x1.png" width="255"></div>
+  </section>
+</main>
+<div id="toast">已复制，可直接粘贴到公众号编辑器</div>
+<script>
+async function copyArticle(){
+  const html = document.getElementById('article').innerHTML;
+  try { await navigator.clipboard.write([new ClipboardItem({'text/html': new Blob([html],{type:'text/html'}),'text/plain': new Blob([document.getElementById('article').innerText],{type:'text/plain'})})]); }
+  catch(e){ const r=document.createRange(); r.selectNodeContents(document.getElementById('article')); const s=getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand('copy'); s.removeAllRanges(); }
+  const t=document.getElementById('toast'); t.style.display='block'; setTimeout(()=>t.style.display='none',2200);
+}
+</script></body></html>

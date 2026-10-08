@@ -1,0 +1,28 @@
+# rendered episodes, downloaded third-party media, caches
+output/
+media/
+media_frames/
+**/media/
+.cache/
+*.log
+# python
+.venv/
+venv/
+__pycache__/
+*.pyc
+# models / caches
+.hf/
+huggingface/
+whisper*/
+*.bin
+*.pt
+*.onnx
+# large binaries / renders (music WAVs in assets/music are allowed)
+*.mp4
+*.mov
+*.m4a
+*.mp3
+*.zip
+*.tar*
+*.bak
+.DS_Store

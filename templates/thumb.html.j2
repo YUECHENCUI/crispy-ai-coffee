@@ -1,0 +1,22 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<link rel="stylesheet" href="{{ brand_css }}">
+<style>
+  html,body{width:540px;height:540px;overflow:hidden}
+  #c{position:relative;width:540px;height:540px;overflow:hidden;background:radial-gradient(420px 380px at 70% 18%,#2a1712 0%,rgba(11,13,18,0) 70%),var(--ink)}
+  .grid-bg{background-size:45px 45px}
+  .sunwrap{position:absolute;left:0;right:0;top:40px;height:250px;overflow:hidden}
+  .sun{position:absolute;left:130px;top:30px;width:280px;height:280px;border-radius:50%;
+      background:radial-gradient(circle at 50% 30%,#FFC9A6 0%,#FF7A3D 38%,#FF5A1F 62%,#E8430F 100%)}
+  .stripe{position:absolute;left:130px;width:280px;background:var(--ink)}
+  .hz{position:absolute;left:60px;right:60px;top:290px;height:3px;background:var(--paper)}
+  .wm{position:absolute;left:0;right:0;top:318px;text-align:center;font-size:92px}
+  .dt{position:absolute;left:0;right:0;top:440px;text-align:center;font-family:var(--mono);font-size:26px;letter-spacing:.24em;color:var(--mist)}
+  .dt b{color:var(--sun);font-weight:600}
+</style></head><body><div id="c">
+  <div class="grid-bg"></div>
+  <div class="glow" style="left:150px;top:80px;width:240px;height:240px;background:#FF5A1F;opacity:.35;filter:blur(70px)"></div>
+  <div class="sunwrap"><div class="sun"></div><div class="stripe" style="top:200px;height:9px"></div><div class="stripe" style="top:222px;height:7px"></div><div class="stripe" style="top:240px;height:5px"></div></div>
+  <div class="hz"></div>
+  <div class="wordmark wm">AI<b>早报</b></div>
+  <div class="dt"><b>●</b> {{ b._md }} {{ b._weekday_en }} · No.{{ '%03d' % b._issue_no }}</div>
+</div></body></html>

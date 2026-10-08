@@ -1,0 +1,65 @@
+{
+  "name": "脆脆的AI早咖啡",
+  "name_plain": "脆脆的AI",
+  "name_accent": "早咖啡",
+  "sub": "CRISPY AI COFFEE",
+  "platform": "微信视频号",
+  "publish_time": "08:00",
+  "publish_time_zh": "八点",
+  "launch_date": "2026-10-09",
+  "unit": "杯",
+  "file_prefix": "crispy-ai-coffee",
+  "default_hashtags": [
+    "#AI",
+    "#人工智能",
+    "#科技新闻",
+    "#脆脆的AI早咖啡"
+  ],
+  "host": "脆脆",
+  "outro_line": "咖啡见底，脑子醒了没？",
+  "voice": {
+    "name": "zh-CN-YunxiNeural",
+    "rate": "+14%",
+    "pitch": "+6Hz",
+    "locked": "2026-10-09 by Kit (voice B). Every daily run uses this; a brief can only change it via video.voice_override.",
+    "fallbacks": [
+      {
+        "name": "zh-CN-YunjianNeural",
+        "rate": "+10%",
+        "pitch": "+0Hz"
+      },
+      {
+        "name": "zh-CN-XiaoxiaoNeural",
+        "rate": "+10%",
+        "pitch": "+0Hz"
+      }
+    ]
+  },
+  "catchphrases": {
+    "opening": "早上好，我是脆脆——AI新闻现磨好了，趁热喝！",
+    "transition": "下一口。",
+    "zha": "咖啡渣时间，今日一瓜！",
+    "take": "锐评：",
+    "signoff": "咖啡见底，脑子醒了没？关注脆脆的AI早咖啡，明早八点，续杯！"
+  },
+  "banned_phrases": [
+    "大家好",
+    "欢迎收看",
+    "让我们一起",
+    "据悉",
+    "值得一提的是",
+    "综上所述",
+    "感谢收看",
+    "感谢您的收看",
+    "小编",
+    "家人们",
+    "宝子们",
+    "绝绝子",
+    "yyds",
+    "炸裂",
+    "震惊",
+    "史诗级",
+    "王炸",
+    "遥遥领先"
+  ]
+}

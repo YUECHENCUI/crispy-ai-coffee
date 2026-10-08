@@ -1,0 +1,356 @@
+{
+  "issue_date": "2026-10-09",
+  "coverage": {
+    "from": "2026-10-07 06:00",
+    "to": "2026-10-08 23:30",
+    "tz": "Asia/Shanghai"
+  },
+  "headline": "GPT-6 推向 12 亿用户，Claude 小模型价格“打骨折”",
+  "lede": "模型在卷“界面”和“价格”，资本在卷“借钱买卡”，数学界则被 OpenAI 的 722 篇论文砸懵了。",
+  "items": [
+    {
+      "id": "gpt6-intelligent-ui",
+      "category": "tech",
+      "title": "GPT-6 全量上线，ChatGPT 开始“现场做界面”",
+      "summary": "OpenAI 10 月 7 日起向 Plus、Pro、Business、Enterprise 用户推送 GPT-6（付费档为 GPT-6 Sol），10 月 8 日扩展到免费与 Go 用户（GPT-6 Luna）。新能力 Intelligent UI 让回答里直接出现图表、按钮、表单和小工具——比如按人数自动换算的菜谱、AA 账单计算器。Work 与 Codex 背后的模型这次没有变化。",
+      "why": "聊天框正在从“给你一段文字”变成“按需生成一个小软件”。OpenAI 称 ChatGPT 每周用户超过 12 亿，交互形态的变化会直接改变大众使用 AI 的习惯。",
+      "key_stat": {
+        "value": "12亿+",
+        "label": "ChatGPT 周用户（OpenAI 口径）"
+      },
+      "heat": "@OpenAI 发布帖 2.1 万赞 / 465 万浏览；Altman 发帖“ChatGPT can now generate a custom UI for you!”约 1 万赞",
+      "sources": [
+        {
+          "label": "OpenAI @X",
+          "url": "https://x.com/OpenAI/status/2107894997538525580"
+        },
+        {
+          "label": "Sam Altman @X",
+          "url": "https://x.com/sama/status/2107924408597950702"
+        },
+        {
+          "label": "OpenAI 官方博客",
+          "url": "https://openai.com/index/gpt-6-for-everyone/"
+        },
+        {
+          "label": "MacRumors",
+          "url": "https://www.macrumors.com/2026/10/07/chatgpt-intelligent-ui/"
+        }
+      ]
+    },
+    {
+      "id": "claude-haiku-5-5",
+      "category": "tech",
+      "title": "Claude Haiku 5.5 发布：最便宜、也最快的 Claude",
+      "summary": "Anthropic 10 月 7 日发布 Haiku 5.5，补齐 Claude 5.5 家族。10 万 token 以内的请求，每百万 token 输入 0.10 美元、输出 0.50 美元，比 Haiku 4.5（1 美元 / 5 美元）低 90%；算上新分词器，官方称平均运行成本约低 75%。同日 Sonnet 5.5 的缓存读取价格也砍半。",
+      "why": "子代理、批量摘要、客服这类高频任务的成本门槛又降了一截。据 Decrypt，这一价格与 OpenAI 小模型 GPT-6 Luna 持平——价格战已经从旗舰打到了小模型。",
+      "key_stat": {
+        "value": "-75%",
+        "label": "平均运行成本 vs Haiku 4.5"
+      },
+      "heat": "@claudeai 发布帖 4.3 万赞 / 524 万浏览，是本期采样中点赞最高的帖子",
+      "sources": [
+        {
+          "label": "Claude @X",
+          "url": "https://x.com/claudeai/status/2107894039626277339"
+        },
+        {
+          "label": "Anthropic 官方",
+          "url": "https://www.anthropic.com/claude-haiku-5-5"
+        },
+        {
+          "label": "Decrypt",
+          "url": "https://decrypt.co/380351/anthropic-launches-haiku-5-5-cheapest-fastest-claude-model"
+        }
+      ]
+    },
+    {
+      "id": "openai-722-math",
+      "category": "tech",
+      "title": "OpenAI 一口气甩出 722 篇 AI 数学论文",
+      "summary": "OpenAI 在 GitHub 公开了 722 篇由内部未发布模型产出的数学手稿，归为 372 个结果族；模型总共被投喂约 4000 道问题，每个结果平均消耗约相当于 3 小时 ChatGPT Pro 的思考算力。其中包括一个被称为“准黎曼假设”的结果——注意，它并不是对黎曼假设本身的证明。",
+      "why": "AI 已经能批量产出“看起来像研究级”的数学成果，但验证跟不上：据 New Scientist 统计，主结果完成 Lean 形式化验证的只有约 162 篇；“人类数学协会”发声明称“一次放出 700 多份文件不是学术，而是展示权力”。",
+      "key_stat": {
+        "value": "722",
+        "label": "篇论文 · 372 个结果族"
+      },
+      "heat": "@OpenAI 发布帖 3.9 万赞 / 2069 万浏览，是本期浏览量最高的 AI 帖子",
+      "sources": [
+        {
+          "label": "OpenAI @X",
+          "url": "https://x.com/OpenAI/status/2107596713791767021"
+        },
+        {
+          "label": "GitHub openai/math",
+          "url": "https://github.com/openai/math"
+        },
+        {
+          "label": "New Scientist",
+          "url": "https://www.newscientist.com/article/2592684-openai-has-dumped-722-maths-papers-now-it-must-clean-up-the-mess/"
+        },
+        {
+          "label": "Tapestry News",
+          "url": "https://tapestry.news/tech/openai-722-math-papers/"
+        }
+      ]
+    },
+    {
+      "id": "synthid-detector",
+      "category": "tech",
+      "title": "谷歌 SynthID 检测器向所有人开放，OpenAI、英伟达也加入",
+      "summary": "10 月 7 日，Google DeepMind 宣布 SynthID Detector 全球开放（英文界面），可检查图片、视频、音频是否带有 SynthID 水印。除了谷歌自家工具，它还能识别 OpenAI、NVIDIA、Kakao 工具生成的内容，Apple 的支持“即将到来”。",
+      "why": "AI 内容溯源从“各家自说自话”走向跨厂商标准。但它只能识别带水印的内容，并不是万能的鉴伪器。",
+      "key_stat": {
+        "value": "4+1",
+        "label": "家厂商互认（Apple 即将加入）"
+      },
+      "heat": "@GoogleDeepMind 发布帖 1300+ 赞 / 14 万浏览，Google 主账号同步转发",
+      "sources": [
+        {
+          "label": "Google DeepMind @X",
+          "url": "https://x.com/GoogleDeepMind/status/2107834249680499136"
+        },
+        {
+          "label": "Google 官方博客",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/synth-id-ai-content/"
+        },
+        {
+          "label": "Ars Technica",
+          "url": "https://arstechnica.com/ai/2026/10/google-rolls-out-improved-synthid-ai-content-detector-now-available-globally/"
+        }
+      ]
+    },
+    {
+      "id": "ai-chip-debt",
+      "category": "biz",
+      "title": "借钱买算力：博通 500 亿、SpaceX 400 亿美元",
+      "summary": "据《华尔街日报》10 月 7 日报道，博通正为与 OpenAI 合作开发的定制 AI 芯片（项目代号 Nexus，前两代为 Jalapeño、Serrano）筹措逾 500 亿美元融资，Apollo、Blackstone 在谈；甲骨文也在与 Apollo、高盛洽谈购芯融资。此前《金融时报》报道，SpaceX 正洽谈约 400 亿美元债务（约 100 亿银行贷款 + 300 亿投资级债券）用于采购英伟达芯片。",
+      "why": "AI 基建的钱正从“现金流 + 发债”转向私募信贷，规模越大，关于泡沫和偿债能力的讨论就越热。以上均为早期谈判，金额和条款可能变化。",
+      "key_stat": {
+        "value": "$50B+",
+        "label": "博通为 OpenAI 芯片筹资（WSJ）"
+      },
+      "heat": "X 热门新闻聚合“Broadcom Seeks $50 Billion Financing for OpenAI AI Chips”，财经账号大量转述",
+      "sources": [
+        {
+          "label": "WSJ",
+          "url": "https://www.wsj.com/tech/oracle-broadcom-and-spacex-seek-blockbuster-debt-deals-to-pay-for-ai-chips-848e8032"
+        },
+        {
+          "label": "The Business Times",
+          "url": "https://www.businesstimes.com.sg/startups-tech/technology/broadcom-plans-us50-billion-financing-openai-chips-wsj-says"
+        },
+        {
+          "label": "investingLive",
+          "url": "https://investinglive.com/stocks/wsj-broadcom-seeks-over-50-billion-for-openai-chips-as-oracle-spacex-chase-ai-debt-deals/"
+        },
+        {
+          "label": "X 热点",
+          "url": "https://x.com/i/trending/2108094271941136394"
+        }
+      ]
+    },
+    {
+      "id": "isomorphic-valuation",
+      "category": "biz",
+      "title": "DeepMind 系 Isomorphic Labs 估值或达 400–500 亿美元",
+      "summary": "据彭博社 10 月 8 日报道，从 Google DeepMind 分拆出来的 AI 药物研发公司 Isomorphic Labs 正就新一轮融资进行早期谈判，估值至少 400 亿美元，最高或达 500 亿美元。公司由 Demis Hassabis 领导，已与礼来、诺华合作。融资尚未完成，条款可能变化。",
+      "why": "资本正在为“AI 设计药物”提前定价，但最终价值仍取决于临床试验结果。",
+      "key_stat": {
+        "value": "$40B+",
+        "label": "洽谈中的估值（彭博）"
+      },
+      "heat": "多家财经账号转述彭博报道",
+      "sources": [
+        {
+          "label": "Bloomberg Law",
+          "url": "https://news.bloomberglaw.com/private-equity/isomorphic-labs-in-funding-talks-for-at-least-40-billion-value"
+        },
+        {
+          "label": "City AM",
+          "url": "https://www.cityam.com/google-deepminds-london-ai-drug-spinout-eyes-50bn-valuation/"
+        },
+        {
+          "label": "IPO Newsroom @X",
+          "url": "https://x.com/IPONewsroom_/status/2108109698020888823"
+        }
+      ]
+    },
+    {
+      "id": "codex-40m-reset",
+      "category": "biz",
+      "title": "Codex 冲到 4000 万活跃，OpenAI 靠“重置额度”宠用户",
+      "summary": "OpenAI Codex 团队的 Tibo Sottiaux 称，Codex 与 ChatGPT Work 合计活跃用户创下 4000 万新高，并给所有付费账户再发一次“额度重置”。前一天，他让社区在“四项新功能”和“重置用量”之间投票，结果重置胜出，他自嘲“这游戏好像被重置操纵了”。",
+      "why": "编程智能体的竞争已经卷到“用量额度”本身：对重度用户来说，额度比新功能更有吸引力。",
+      "key_stat": {
+        "value": "4000万",
+        "label": "Codex + ChatGPT Work 活跃用户"
+      },
+      "heat": "Tibo 两条帖子分别 1.96 万赞 / 185 万浏览、1.58 万赞 / 153 万浏览",
+      "sources": [
+        {
+          "label": "Tibo @X（4000 万）",
+          "url": "https://x.com/thsottiaux/status/2107913674593644711"
+        },
+        {
+          "label": "Tibo @X（投票重置）",
+          "url": "https://x.com/thsottiaux/status/2107676072871600470"
+        }
+      ]
+    },
+    {
+      "id": "openai-300-bounty",
+      "category": "gossip",
+      "title": "能白嫖付费模型的漏洞，只值 300 美元？",
+      "summary": "安全研究员 Oliver Fish 称，他报告了一个“未授权沙箱逃逸”漏洞，可在没有账号、没有 API Key 的情况下访问 OpenAI 内部 Responses API 和付费模型，最后只拿到 300 美元赏金，并表示“没有理由再把发现的任何问题报告给他们”。",
+      "why": "赏金定价直接影响白帽是否愿意负责任地披露。目前该漏洞的技术细节尚未公开。",
+      "key_stat": {
+        "value": "$300",
+        "label": "漏洞赏金"
+      },
+      "heat": "原帖 1.76 万赞 / 80 万浏览，安全圈大量转发吐槽",
+      "sources": [
+        {
+          "label": "Oliver Fish @X",
+          "url": "https://x.com/_Oliver_Fish/status/2107676642491629569"
+        },
+        {
+          "label": "Cybersecurity News",
+          "url": "https://cybersecuritynews.com/openai-sandbox-escape-vulnerability/"
+        }
+      ]
+    },
+    {
+      "id": "garfield-altman",
+      "category": "gossip",
+      "title": "演完 Sam Altman，加菲尔德不用 ChatGPT 了",
+      "summary": "讲述 OpenAI 2023 年“罢免—回归”风波的电影《Artificial》（卢卡·瓜达尼诺执导）在纽约电影节首映，安德鲁·加菲尔德饰演 Sam Altman。他对 Variety 说，拍完后“有点害怕”，不再把 ChatGPT 当“高级版谷歌”用：“鼓励我们使用这些技术的人，自己也不完全清楚它的能力。”影片定档 12 月 25 日上映。",
+      "why": "OpenAI 的故事正在变成大众文化叙事，硅谷公司形象之争也开始在电影院里打。",
+      "key_stat": {
+        "value": "12.25",
+        "label": "《Artificial》上映日"
+      },
+      "heat": "多语种影视账号持续转发首映与采访片段",
+      "sources": [
+        {
+          "label": "Variety",
+          "url": "https://variety.com/2026/film/news/andrew-garfield-chatgpt-sam-altman-artificial-1236904494/"
+        },
+        {
+          "label": "Business Insider",
+          "url": "https://www.businessinsider.com/andrew-garfield-scared-chat-gpt-ai-playing-sam-altman-artificial-2026-10"
+        }
+      ]
+    }
+  ],
+  "video": {
+    "cover_title": [
+      "GPT-6 全量上线",
+      "Claude 价格打骨折"
+    ],
+    "cover_tags": [
+      "GPT-6",
+      "Haiku 5.5",
+      "722 篇数学论文",
+      "借钱买算力",
+      "$300 赏金"
+    ],
+    "scenes": [
+      {
+        "type": "title",
+        "narration": "早上好，我是脆脆——AI新闻现磨好了，趁热喝！今天这杯偏烫：有人降价，有人借钱。"
+      },
+      {
+        "type": "story",
+        "item": "gpt6-intelligent-ui",
+        "headline": "GPT-6 全量上线",
+        "point": "回答里直接长出图表、按钮和小工具",
+        "narration": "ChatGPT换上GPT-6，免费用户也有份。问个菜谱，它直接给你按人数换算的小工具。锐评：AI不光写答案，开始现做小程序了。",
+        "take": "AI 不光写答案，开始现做小程序了",
+        "take_from": "AI不光",
+        "media": {
+          "type": "video",
+          "url": "https://video.twimg.com/amplify_video/2107893961461473280/vid/avc1/1280x720/juhdrcOKw2K9lzhq.mp4",
+          "page": "https://x.com/OpenAI/status/2107894997538525580",
+          "credit": "OpenAI @X 官方视频",
+          "start": 39,
+          "fit": "cover"
+        }
+      },
+      {
+        "type": "story",
+        "item": "claude-haiku-5-5",
+        "headline": "Claude Haiku 5.5",
+        "point": "每百万输入 token 仅 0.1 美元",
+        "narration": "下一口。Claude Haiku 5.5，平均成本降约75%，百万输入token只要0.1美元。锐评：小模型，也卷到九块九包邮了。",
+        "take": "小模型，也卷到九块九包邮了",
+        "take_from": "小模型，也",
+        "media": {
+          "type": "video",
+          "url": "https://video.twimg.com/amplify_video/2107890134603481088/vid/avc1/1920x1080/eJtAMwe1b3JH6j1V.mp4",
+          "page": "https://x.com/claudeai/status/2107894039626277339",
+          "credit": "Claude @X 官方视频",
+          "start": 0,
+          "fit": "cover",
+          "end": 7.0
+        }
+      },
+      {
+        "type": "story",
+        "item": "openai-722-math",
+        "headline": "OpenAI 数学大放送",
+        "point": "完成形式化验证的主结果仅约 162 篇",
+        "narration": "下一口。OpenAI甩出722篇AI数学论文，可据《新科学家》统计，完成形式化验证的主结果只有约162篇。锐评：作业交了七百多份，老师还没批完。",
+        "take": "作业交了七百多份，老师还没批完",
+        "take_from": "作业交了"
+      },
+      {
+        "type": "story",
+        "item": "ai-chip-debt",
+        "headline": "借钱买算力",
+        "point": "博通 500 亿 · SpaceX 400 亿美元",
+        "narration": "下一口。算力开始刷卡：华尔街日报称，博通为OpenAI芯片筹资超500亿美元，SpaceX也在谈400亿美元债务。锐评：先借钱买铲子，金子再说。",
+        "take": "先借钱买铲子，金子再说",
+        "take_from": "先借钱"
+      },
+      {
+        "type": "story",
+        "item": "openai-300-bounty",
+        "headline": "漏洞只值 300 美元？",
+        "point": "无需密钥访问付费模型，赏金却只有 $300",
+        "narration": "咖啡渣时间，今日一瓜！有研究员称，发现能免密钥调用OpenAI付费模型的漏洞，赏金只有300美元。他说：以后不报了。锐评：漏洞VIP级，赏金小费级。",
+        "take": "漏洞 VIP 级，赏金小费级",
+        "take_from": "漏洞VIP",
+        "segment": "zha",
+        "media": {
+          "type": "image",
+          "url": "https://pbs.twimg.com/media/HT_3hiXbIAERz8a.jpg?name=orig",
+          "page": "https://x.com/_Oliver_Fish/status/2107676642491629569",
+          "credit": "Oliver Fish @X 原帖截图",
+          "fit": "contain"
+        }
+      },
+      {
+        "type": "outro",
+        "narration": "咖啡见底，脑子醒了没？关注脆脆的AI早咖啡，明早八点，续杯！"
+      }
+    ],
+    "lede": "今天这杯偏烫：有人降价，有人借钱。"
+  },
+  "sph": {
+    "title": "GPT-6全量上线，小模型打骨折",
+    "description": [
+      "☕ 脆脆的AI早咖啡 · 第001杯 · 10.09 周五",
+      "GPT-6 全量上线，回答里能“长出”小工具；Claude Haiku 5.5 平均成本降约 75%；OpenAI 放出 722 篇 AI 数学论文；博通为 OpenAI 芯片筹资超 500 亿美元；一个漏洞只换来 300 美元赏金。",
+      "我是脆脆，每天早上 8 点，AI 新闻现磨好，趁热喝。"
+    ],
+    "hashtags": [
+      "#AI",
+      "#人工智能",
+      "#ChatGPT",
+      "#Claude",
+      "#科技新闻",
+      "#脆脆的AI早咖啡"
+    ]
+  }
+}

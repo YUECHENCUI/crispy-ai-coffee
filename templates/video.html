@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<link rel="stylesheet" href="brand.css">
+<style>
+  html,body{width:1080px;height:1920px;overflow:hidden}
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:
+     radial-gradient(1200px 900px at 85% 8%, #1a1420 0%, rgba(11,13,18,0) 60%), var(--ink)}
+  .layer{position:absolute;inset:0}
+  /* header */
+  #hdr{position:absolute;left:72px;right:72px;top:72px;height:96px;display:flex;align-items:center;justify-content:space-between}
+  #hdr .wordmark{font-size:46px}
+  #hdr .sub-mark{font-size:16px;margin-top:10px;letter-spacing:.28em}
+  #hdr .badge{font-size:26px;padding:14px 26px}
+  #hdr .badge .no{color:var(--mist);font-weight:500}
+  /* progress */
+  #prog{position:absolute;left:72px;right:72px;top:206px;display:flex;gap:10px}
+  #prog .seg{flex:1;height:6px;border-radius:3px;background:rgba(244,241,234,.14);overflow:hidden}
+  #prog .seg i{display:block;height:100%;width:0;background:var(--paper)}
+  #prog .seg.cur i{background:var(--sun)}
+  /* subtitles */
+  #sub{position:absolute;left:60px;right:60px;top:1395px;height:200px;display:flex;align-items:flex-start;justify-content:center}
+  #sub span{display:inline-block;max-width:960px;text-align:center;font-family:var(--sans);font-weight:700;font-size:54px;line-height:1.38;text-wrap:balance;
+     color:#fff;background:rgba(5,6,9,.62);padding:14px 30px;border-radius:18px;letter-spacing:.02em;
+     box-shadow:0 0 0 1px rgba(255,255,255,.06)}
+  #foot{position:absolute;left:72px;right:72px;top:1622px;font-family:var(--mono);font-size:22px;letter-spacing:.14em;color:rgba(139,147,161,.6);text-align:center}
+  /* ---------- story ---------- */
+  .st-idx{position:absolute;left:58px;top:252px;font-family:var(--display);font-weight:800;font-size:300px;line-height:1;
+     color:transparent;-webkit-text-stroke:2.5px rgba(244,241,234,.28);letter-spacing:-.04em}
+  .st-chip{position:absolute;right:72px;top:318px;font-size:34px;padding:14px 28px}
+  .st-of{position:absolute;right:76px;top:400px;font-family:var(--mono);font-size:24px;color:var(--mist);letter-spacing:.2em}
+  .st-head{position:absolute;left:72px;right:72px;top:560px;font-family:var(--serif);font-weight:700;font-size:104px;line-height:1.16;letter-spacing:.01em;text-wrap:balance;word-break:keep-all;overflow-wrap:break-word}
+  .st-bar{position:absolute;left:72px;height:10px;width:0;background:var(--sun);border-radius:5px}
+  .st-stat{position:absolute;left:72px;right:72px;font-family:var(--display);font-weight:800;font-size:170px;line-height:1;color:var(--sun);letter-spacing:-.03em;white-space:nowrap}
+  .st-stat small{font-size:.5em}
+  .st-statlab{position:absolute;left:76px;right:72px;font-family:var(--sans);font-size:34px;color:var(--mist)}
+  .st-point{position:absolute;left:72px;right:72px;font-family:var(--sans);font-weight:400;font-size:48px;line-height:1.42;color:rgba(244,241,234,.92)}
+  .st-src{position:absolute;left:72px;top:1290px;white-space:nowrap;display:flex;align-items:center;gap:16px;font-family:var(--mono);font-size:25px;color:var(--mist);letter-spacing:.06em}
+  .st-src b{color:var(--paper);font-weight:600;font-family:var(--sans)}
+  .st-src .k{border:1.5px solid rgba(139,147,161,.6);border-radius:8px;padding:4px 12px;letter-spacing:.2em;font-size:21px}
+  /* 脆脆锐评 sticker (opinion, clearly labelled) */
+  .st-take{position:absolute;left:72px;right:72px;display:flex;align-items:center;gap:20px;padding:20px 26px;border-radius:22px;
+     border:2px dashed rgba(255,90,31,.6);background:rgba(255,90,31,.08);transform-origin:left center}
+  .st-take .lab{flex:none;display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:800;font-size:26px;color:var(--ink);background:var(--sun);border-radius:999px;padding:8px 16px 8px 10px}
+  .st-take .lab img{width:34px;height:34px;filter:brightness(0) saturate(100%)}
+  .st-take .tx{font-family:var(--sans);font-weight:700;font-size:40px;line-height:1.3;color:var(--paper);text-wrap:balance}
+  /* media card variant: official image / muted clip in a framed area */
+  .st-idx.sm{font-size:150px;top:262px;-webkit-text-stroke:2px rgba(244,241,234,.28)}
+  .st-media{position:absolute;left:72px;right:72px;border-radius:26px;overflow:hidden;border:2px solid rgba(244,241,234,.2);background:#05060a;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+  .st-media img{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .st-media .bg{object-fit:cover;filter:blur(28px) brightness(.5);transform:scale(1.15)}
+  .st-media .fg{object-fit:cover}
+  .st-media.contain .fg{object-fit:contain}
+  .st-media .cred{position:absolute;right:14px;bottom:14px;font-family:var(--mono);font-size:19px;letter-spacing:.04em;color:rgba(244,241,234,.95);background:rgba(5,6,9,.7);padding:6px 12px;border-radius:8px}
+  .st-mstat{position:absolute;left:16px;top:16px;background:rgba(11,13,18,.84);border:1.5px solid rgba(255,90,31,.6);border-radius:16px;padding:10px 18px 12px}
+  .st-mstat b{display:block;font-family:var(--display);font-weight:800;font-size:66px;line-height:1;color:var(--sun);letter-spacing:-.02em;white-space:nowrap}
+  .st-mstat b small{font-size:.55em}
+  .st-mstat span{display:block;margin-top:6px;font-family:var(--sans);font-size:22px;color:var(--mist);max-width:440px}
+  /* 咖啡渣时间 (the gossip mini-segment) */
+  .zh-stamp{position:absolute;left:72px;top:300px;transform:rotate(-4deg);transform-origin:left top;border:4px solid var(--gossip);border-radius:16px;padding:14px 26px 12px;color:var(--gossip)}
+  .zh-stamp b{display:block;font-family:var(--serif);font-weight:700;font-size:62px;line-height:1.05;letter-spacing:.04em}
+  .zh-stamp i{display:block;margin-top:8px;font-style:normal;font-family:var(--mono);font-size:22px;letter-spacing:.28em;opacity:.85}
+  .zh-ring{position:absolute;left:560px;top:250px;width:300px;height:300px;opacity:.55}
+  /* ---------- title ---------- */
+  .tt-sunwrap{position:absolute;left:0;right:0;top:250px;height:470px;overflow:hidden}
+  .tt-sun{position:absolute;width:500px;height:500px;border-radius:50%;left:530px;top:170px;
+     background:radial-gradient(circle at 50% 30%, #FFC9A6 0%, #FF7A3D 38%, #FF5A1F 62%, #E8430F 100%)}
+  .tt-stripe{position:absolute;left:530px;width:500px;background:var(--ink)}
+  .tt-hz{position:absolute;left:72px;right:72px;top:720px;height:3px;background:var(--paper);transform-origin:left}
+  .tt-date{position:absolute;left:66px;top:300px;font-family:var(--display);font-weight:800;font-size:220px;line-height:1;letter-spacing:-.04em}
+  .tt-wk{position:absolute;left:76px;top:540px;font-family:var(--mono);font-size:30px;letter-spacing:.3em;color:var(--mist)}
+  .tt-title{position:absolute;left:72px;top:770px;font-family:var(--serif);font-weight:700;font-size:116px;line-height:1.1}
+  .tt-title b{color:var(--sun);font-weight:700}
+  .tt-lede{position:absolute;left:76px;right:90px;top:925px;font-family:var(--sans);font-size:38px;line-height:1.5;color:var(--mist)}
+  .tt-list{position:absolute;left:72px;right:72px;top:1062px}
+  .tt-row{display:flex;align-items:baseline;gap:26px;height:58px;font-family:var(--sans);font-size:42px;font-weight:700;border-bottom:1px solid var(--line)}
+  .tt-row em{font-style:normal;font-family:var(--mono);font-size:28px;color:var(--sun);font-weight:600;width:52px}
+  .tt-row .c{margin-left:auto;font-family:var(--mono);font-size:22px;font-weight:500;letter-spacing:.2em}
+  /* ---------- cover (first 1.8 s of the title scene = 视频号 cover / first frame) ---------- */
+  /* everything sits inside y 240–1680 so the central 1080x1440 crop is the 3:4 cover */
+  .cv{position:absolute;inset:0}
+  .cv-brand{position:absolute;left:72px;top:300px;display:flex;align-items:center;gap:20px}
+  .cv-brand .wordmark{font-size:58px}
+  .cv-brand .sub-mark{font-size:18px;margin-top:12px;letter-spacing:.28em}
+  .cv-no{position:absolute;right:72px;top:318px;font-family:var(--sans);font-weight:700;font-size:34px;padding:12px 28px;border-radius:999px;background:var(--sun);color:var(--ink)}
+  .cv-date{position:absolute;left:62px;top:470px;font-family:var(--display);font-weight:800;font-size:220px;line-height:1;letter-spacing:-.04em}
+  .cv-wk{position:absolute;left:76px;top:708px;font-family:var(--mono);font-size:30px;letter-spacing:.3em;color:var(--mist)}
+  .cv-cup{position:absolute;left:676px;top:404px;width:350px;height:350px}
+  .cv-hz{position:absolute;left:72px;right:72px;top:790px;height:3px;background:rgba(244,241,234,.5)}
+  .cv-title{position:absolute;left:72px;right:60px;top:850px;font-family:var(--serif);font-weight:700;font-size:100px;line-height:1.2;word-break:keep-all}
+  .cv-title span:nth-child(2n){color:var(--sun)}
+  .cv-tags{position:absolute;left:72px;right:72px;top:1140px;display:flex;flex-wrap:wrap;gap:16px}
+  .cv-tags span{font-family:var(--sans);font-weight:700;font-size:34px;padding:10px 24px;border-radius:999px;border:2px solid rgba(244,241,234,.28);color:rgba(244,241,234,.92)}
+  .cv-tags span em{font-style:normal;font-family:var(--mono);color:var(--sun);margin-right:10px;font-size:26px}
+  .cv-foot{position:absolute;left:72px;right:72px;top:1452px;border-top:2px solid rgba(244,241,234,.14);padding-top:34px}
+  .cv-foot .a{font-family:var(--sans);font-weight:700;font-size:44px}
+  .cv-foot .b{margin-top:14px;font-family:var(--mono);font-size:25px;letter-spacing:.2em;color:var(--sun)}
+  /* ---------- outro ---------- */
+  .ou-c{position:absolute;left:0;right:0;top:290px;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .ou-c .wordmark{font-size:112px;margin-top:20px}
+  .ou-logo{width:240px;height:240px}
+  .ou-c .sub-mark{font-size:24px;margin-top:24px;letter-spacing:.26em}
+  .ou-line{margin-top:64px;font-family:var(--sans);font-size:46px;font-weight:700}
+  .ou-card{margin-top:46px;border:2px solid rgba(244,241,234,.18);border-radius:28px;padding:30px 44px;font-family:var(--sans);font-size:38px;line-height:1.6;color:rgba(244,241,234,.9)}
+  .ou-card b{color:var(--sun)}
+  .ou-it{margin-top:44px;font-family:var(--italic);font-style:italic;font-size:64px;color:var(--sun2)}
+</style></head>
+<body><div id="stage">
+  <div class="grid-bg" id="grid"></div>
+  <div class="glow" id="glow"></div>
+  <div id="hdr">
+    <div class="logo"><img src="../assets/logo_coffee.svg" width="88" height="88">
+      <div><div class="wordmark" id="hwm"></div><div class="sub-mark" id="hsub"></div></div></div>
+    <div class="badge"><span class="dot"></span><span id="bdate"></span><span class="no" id="bno"></span></div>
+  </div>
+  <div id="prog"></div>
+  <div class="layer" id="scene"></div>
+  <div id="sub"><span id="subt"></span></div>
+  <div id="foot">信息来源：X 热帖 + 公开报道</div>
+</div>
+<script>
+const DATA = /*__DATA__*/null;
+const $ = s => document.querySelector(s);
+const clamp = x => Math.max(0, Math.min(1, x));
+const E = x => 1 - Math.pow(1 - clamp(x), 3);
+const EIO = x => { x = clamp(x); return x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x+2, 3)/2; };
+function show(el, t, t0, o = {}) {
+  if (!el) return; const d = o.d ?? .6, dy = o.dy ?? 40, dx = o.dx ?? 0;
+  const p = E((t - t0) / d); el.style.opacity = p;
+  el.style.transform = `translate(${dx*(1-p)}px,${dy*(1-p)}px)` + (o.s ? ` scale(${1-(1-p)*o.s})` : '');
+}
+function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
+// count-up for stat values like "-75%", "$50B+", "12亿+", "722", "4000万"
+function countUp(v, p) {
+  const m = v.match(/(\d+(?:\.\d+)?)/); if (!m) return esc(v);
+  const n = parseFloat(m[1]), dec = (m[1].split('.')[1]||'').length;
+  const cur = (n * E(p)).toFixed(dec);
+  const pre = esc(v.slice(0, m.index)), post = esc(v.slice(m.index + m[1].length));
+  return pre + cur + (post ? `<small>${post}</small>` : '');
+}
+const CH = DATA.channel;
+const no3 = n => String(n).padStart(3,'0');
+const wordmark = () => `${esc(CH.name_plain)}<b>${esc(CH.name_accent)}</b>`;
+// inline copy of assets/logo_coffee.svg so the steam can move
+const CUP = `<svg viewBox="0 0 120 120" width="100%" height="100%" style="overflow:visible">
+  <defs><clipPath id="cupRim"><rect x="0" y="-60" width="120" height="114"/></clipPath>
+  <linearGradient id="cupSun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB38A"/><stop offset="0.55" stop-color="#FF5A1F"/><stop offset="1" stop-color="#E8430F"/></linearGradient></defs>
+  <g class="steam"><path class="s1" d="M44 25 c-6 -5 6 -9 0 -15" fill="none" stroke="#FFB38A" stroke-width="4.2" stroke-linecap="round"/>
+  <path class="s2" d="M60 22 c-6 -5 6 -9 0 -15" fill="none" stroke="#FFB38A" stroke-width="4.2" stroke-linecap="round"/></g>
+  <g clip-path="url(#cupRim)"><g class="sunup"><circle cx="52" cy="56" r="25" fill="url(#cupSun)"/>
+    <rect x="20" y="42" width="66" height="3" fill="#0B0D12"/><rect x="20" y="48.5" width="66" height="2.2" fill="#0B0D12"/></g></g>
+  <path d="M94 62 c15 -2 16 22 -2 22" fill="none" stroke="#F4F1EA" stroke-width="7" stroke-linecap="round"/>
+  <path d="M16 54 H88 V70 C88 87 77 97 62 97 H42 C27 97 16 87 16 70 Z" fill="#F4F1EA"/>
+  <rect x="16" y="54" width="72" height="4.5" fill="#FF5A1F"/><rect x="6" y="103" width="108" height="5" rx="2.5" fill="#F4F1EA"/></svg>`;
+function steam(root, t) {
+  root.querySelectorAll('.s1').forEach(e => { e.style.transform = `translate(${Math.sin(t*2.2)*1.6}px,${-((t*6)%4)}px)`; e.style.opacity = .75 + .25*Math.sin(t*2.6); });
+  root.querySelectorAll('.s2').forEach(e => { e.style.transform = `translate(${Math.sin(t*2.2+1.7)*1.6}px,${-((t*6+2)%4)}px)`; e.style.opacity = .75 + .25*Math.sin(t*2.6+2); });
+}
+const mframe = (m, k) => `${m.frames}/${String(Math.max(1, Math.min(m.n_frames, k))).padStart(4,'0')}.jpg`;
+window.mediaWait = () => Promise.all([...document.querySelectorAll('.st-media img')].map(im => im.decode().catch(() => 0)));
+let built = -1;
+function build(i) {
+  const sc = DATA.scenes[i], root = $('#scene'); root.innerHTML = '';
+  const glow = $('#glow');
+  const col = sc.color || '#FF5A1F';
+  glow.style.cssText = `width:900px;height:900px;left:420px;top:-260px;background:${col};opacity:.16`;
+  if (sc.type === 'story') {
+    root.innerHTML = `
+      ${sc.segment === 'zha'
+        ? `<div class="zh-ring"><svg viewBox="0 0 100 100" width="100%" height="100%"><circle cx="50" cy="50" r="40" fill="none" stroke="#8A5A3C" stroke-width="5" stroke-dasharray="190 18 40 9" stroke-linecap="round"/><circle cx="52" cy="49" r="35" fill="none" stroke="#8A5A3C" stroke-width="1.5" opacity=".6" stroke-dasharray="120 30"/><circle cx="83" cy="80" r="3.2" fill="#8A5A3C"/><circle cx="90" cy="70" r="1.8" fill="#8A5A3C"/></svg></div>
+           <div class="zh-stamp"><b>咖啡渣时间</b><i>COFFEE GROUNDS · 今日一瓜</i></div>`
+        : `<div class="st-idx${sc.media ? ' sm' : ''}">${String(sc.n).padStart(2,'0')}</div>`}
+      <div class="chip st-chip" style="background:${col}22;color:${col};border:2px solid ${col}88">${esc(sc.cat_zh)} <i>${esc(sc.cat_en)}</i></div>
+      <div class="st-of">${String(sc.n).padStart(2,'0')} / ${String(DATA.n_stories).padStart(2,'0')}</div>
+      <div class="st-head">${esc(sc.headline)}</div>
+      <div class="st-bar"></div>
+      ${sc.media ? `<div class="st-media ${sc.media.fit === 'contain' ? 'contain' : ''}">
+          ${sc.media.fit === 'contain' ? `<img class="bg" src="${sc.media.kind === 'video' ? mframe(sc.media, 1) : sc.media.src}">` : ''}
+          <img class="fg" src="${sc.media.kind === 'video' ? mframe(sc.media, 1) : sc.media.src}">
+          ${sc.stat_value ? `<div class="st-mstat"><b></b><span>${esc(sc.stat_label||'')}</span></div>` : ''}
+          <div class="cred">画面：${esc(sc.media.credit)}</div></div>`
+        : `<div class="st-stat"></div>
+      <div class="st-statlab">${esc(sc.stat_label||'')}</div>`}
+      <div class="st-point">${esc(sc.point)}</div>
+      <div class="st-src"><span class="k">SOURCE</span><b>${esc(sc.source)}</b></div>
+      ${sc.take ? `<div class="st-take"><span class="lab"><img src="../assets/logo_coffee.svg">脆脆锐评</span><span class="tx">${esc(sc.take)}</span></div>` : ''}`;
+    // vertical rhythm depends on headline height
+    const h = root.querySelector('.st-head');
+    // auto-fit: shrink headline (down to 84px) so it stays on one line if possible; else balanced 2 lines
+    for (let fs = 104; fs >= 84; fs -= 4) { h.style.fontSize = fs + 'px'; if (h.offsetHeight <= fs * 1.16 + 4) break; }
+    if (h.offsetHeight > 84 * 1.16 + 4) h.style.fontSize = '96px';
+    if (sc.media) {   // media variant: headline higher, framed media fills the space the big stat used
+      h.style.top = '440px';
+      const hb = h.offsetTop + h.offsetHeight, pt = root.querySelector('.st-point'), src = root.querySelector('.st-src'), tk = root.querySelector('.st-take');
+      root.querySelector('.st-bar').style.top = (hb + 22) + 'px';
+      const ft = hb + 54, fixed = 30 + pt.offsetHeight + 30 + src.offsetHeight + (tk ? 30 + tk.offsetHeight : 0);
+      const H = Math.max(360, Math.min(527, 1372 - ft - fixed));
+      const fr = root.querySelector('.st-media'); fr.style.top = ft + 'px'; fr.style.height = H + 'px';
+      pt.style.top = (ft + H + 30) + 'px';
+      src.style.top = (pt.offsetTop + pt.offsetHeight + 30) + 'px';
+      if (tk) tk.style.top = (src.offsetTop + src.offsetHeight + 30) + 'px';
+      if (sc.segment === 'zha') root.querySelector('.st-bar').style.background = col;
+    } else {
+    const hb = h.offsetTop + h.offsetHeight;
+    root.querySelector('.st-bar').style.top = (hb + 30) + 'px';
+    root.querySelector('.st-stat').style.top = (hb + 78) + 'px';
+    root.querySelector('.st-statlab').style.top = (hb + 262) + 'px';
+    const pt = root.querySelector('.st-point'); pt.style.top = (hb + 326) + 'px';
+    const src = root.querySelector('.st-src'); src.style.top = (pt.offsetTop + pt.offsetHeight + 34) + 'px';
+    const tk = root.querySelector('.st-take'); if (tk) tk.style.top = (src.offsetTop + src.offsetHeight + 32) + 'px';
+    if (sc.segment === 'zha') { root.querySelector('.st-bar').style.background = col; root.querySelector('.st-stat').style.color = col; }
+    }
+  } else if (sc.type === 'title') {
+    root.innerHTML = `
+      <div class="tt">
+      <div class="glow" style="left:600px;top:480px;width:380px;height:380px;background:#FF5A1F;opacity:.3;filter:blur(90px)"></div>
+      <div class="tt-sunwrap"><div class="tt-sun"></div>
+        <div class="tt-stripe" style="top:392px;height:10px"></div><div class="tt-stripe" style="top:424px;height:8px"></div><div class="tt-stripe" style="top:452px;height:6px"></div></div>
+      <div class="tt-hz"></div>
+      <div class="tt-date">${esc(DATA.md)}</div>
+      <div class="tt-wk">${esc(DATA.weekday_en)} · ${esc(DATA.weekday)} · ${esc(DATA.year)}</div>
+      <div class="tt-title">昨日 AI <b>${esc(DATA.n_zh)}件事</b></div>
+      <div class="tt-lede">${esc(DATA.lede)}</div>
+      <div class="tt-list">${DATA.rundown.map((r,k)=>`<div class="tt-row"><em>${String(k+1).padStart(2,'0')}</em><span>${esc(r.h)}</span><span class="c" style="color:${r.color}">${esc(r.en)}</span></div>`).join('')}</div>
+      </div>
+      <div class="cv">
+        <div class="cv-brand"><img src="../assets/logo_coffee.svg" width="104" height="104">
+          <div><div class="wordmark">${wordmark()}</div><div class="sub-mark">${esc(CH.sub)}</div></div></div>
+        <div class="cv-no">第${no3(DATA.issue_no)}${esc(CH.unit)}</div>
+        <div class="glow" style="left:700px;top:430px;width:300px;height:300px;background:#FF5A1F;opacity:.28;filter:blur(80px)"></div>
+        <div class="cv-cup">${CUP}</div>
+        <div class="cv-date">${esc(DATA.md)}</div>
+        <div class="cv-wk">${esc(DATA.weekday_en)} · ${esc(DATA.weekday)} · ${esc(DATA.year)}</div>
+        <div class="cv-hz"></div>
+        <div class="cv-title">${DATA.cover_title.map((l,k)=>`<span>${esc(l)}</span>`).join('<br>')}</div>
+        <div class="cv-tags">${DATA.cover_tags.map((x,k)=>`<span><em>${String(k+1).padStart(2,'0')}</em>${esc(x)}</span>`).join('')}</div>
+        <div class="cv-foot"><div class="a">一杯咖啡的时间，看懂昨天的 AI</div><div class="b">EVERY MORNING ${esc(CH.publish_time)} · 每天早上${esc(CH.publish_time_zh)}</div></div>
+      </div>`;
+  } else {
+    root.innerHTML = `
+      <div class="ou-c">
+        <div class="ou-logo">${CUP}</div>
+        <div class="wordmark">${wordmark()}</div>
+        <div class="sub-mark">${esc(CH.sub)} · DAILY ${esc(CH.publish_time)}</div>
+        <div class="ou-line">${esc(CH.outro_line || ('每天 ' + CH.publish_time + ' · 一杯咖啡的时间看懂 AI'))}</div>
+        <div class="ou-card">关注 <b>「${esc(CH.name)}」</b><br>明早 ${parseInt(CH.publish_time)} 点续杯 · 第${no3(DATA.issue_no + 1)}${esc(CH.unit)}</div>
+        <div class="ou-it">See you tomorrow, ${parseInt(CH.publish_time)} AM.</div>
+      </div>`;
+  }
+  built = i;
+}
+function renderAt(i, t) {
+  if (built !== i) build(i);
+  const sc = DATA.scenes[i], D = sc.duration;
+  // header / progress
+  $('#bdate').textContent = DATA.md + ' ' + DATA.weekday_en;
+  $('#bno').textContent = '第' + no3(DATA.issue_no) + CH.unit;
+  if (!$('#hwm').innerHTML) { $('#hwm').innerHTML = wordmark(); $('#hsub').textContent = CH.sub; }
+  // title scene opens with the still cover: chrome (header/progress/footer) fades in after it
+  const chrome = (i === 0) ? E((t - DATA.cover) / .45) : 1;
+  ['#hdr', '#prog', '#foot'].forEach(s => $(s).style.opacity = chrome);
+  const prog = $('#prog');
+  if (!prog.children.length) prog.innerHTML = DATA.scenes.map(()=>'<div class="seg"><i></i></div>').join('');
+  [...prog.children].forEach((s, k) => { s.classList.toggle('cur', k === i);
+    s.firstChild.style.width = (k < i ? 100 : k > i ? 0 : 100 * clamp(t / D)) + '%'; });
+  // background drift
+  $('#grid').style.backgroundPosition = `${-1 - t*4}px ${-1 - t*7}px`;
+  $('#glow').style.transform = `translate(${Math.sin(t*.35)*40}px,${Math.cos(t*.3)*30}px)`;
+  const r = $('#scene');
+  if (sc.type === 'story') {
+    show(r.querySelector('.st-idx'), t, 0, {dx:-80, dy:0, d:.8});
+    const zs = r.querySelector('.zh-stamp'); if (zs) { const p = E(t / .45); zs.style.opacity = p; zs.style.transform = `rotate(-4deg) scale(${1.6 - .6*p})`; }
+    const zr = r.querySelector('.zh-ring'); if (zr) { zr.style.opacity = .55 * E((t - .2) / .6); zr.style.transform = `rotate(${t*6}deg)`; }
+    const tk = r.querySelector('.st-take');
+    if (tk) { const p = clamp((t - sc.take_at) / .35); tk.style.opacity = E(p * 1.6);
+      tk.style.transform = `rotate(${-1.2*E(p)}deg) scale(${p >= 1 ? 1 : .85 + .15*E(p) + .06*Math.sin(p*Math.PI)})`; }
+    show(r.querySelector('.st-chip'), t, .15, {dy:-20});
+    show(r.querySelector('.st-of'), t, .25, {dy:-10});
+    show(r.querySelector('.st-head'), t, .3, {dy:60, d:.75});
+    r.querySelector('.st-bar').style.width = (160 * EIO((t - .7) / .6)) + 'px';
+    const st = r.querySelector('.st-stat'); if (st) { show(st, t, .85, {dy:30}); st.innerHTML = countUp(sc.stat_value || '', (t - .85) / 1.1); }
+    show(r.querySelector('.st-statlab'), t, 1.1, {dy:20});
+    const fr = r.querySelector('.st-media');
+    if (fr) {
+      show(fr, t, .45, {dy:40, d:.7});
+      const fg = fr.querySelector('.fg');
+      if (sc.media.kind === 'video') { const src = mframe(sc.media, Math.floor(t * 30) + 1); if (fg.getAttribute('src') !== src) fg.setAttribute('src', src); }
+      else fg.style.transform = `scale(${1 + .05 * clamp(t / D)})`;   // gentle Ken Burns on stills
+      const ms = fr.querySelector('.st-mstat'); if (ms) { show(ms, t, .9, {dy:16}); ms.querySelector('b').innerHTML = countUp(sc.stat_value || '', (t - .9) / 1.1); }
+    }
+    show(r.querySelector('.st-point'), t, 1.35, {dy:30});
+    show(r.querySelector('.st-src'), t, 1.7, {dy:20});
+  } else if (sc.type === 'title') {
+    const C = DATA.cover, tc = t - C;
+    const cv = r.querySelector('.cv'), co = 1 - E(tc / .35);
+    cv.style.opacity = co; cv.style.transform = `translateY(${-(1-co)*60}px)`; cv.style.visibility = co > 0 ? 'visible' : 'hidden';
+    steam(cv, t);
+    r.querySelector('.tt').style.visibility = tc > 0 ? 'visible' : 'hidden';
+    const sun = r.querySelector('.tt-sun'); const p = E(tc / 1.4);
+    sun.style.transform = `translateY(${(1-p)*360}px)`;
+    r.querySelector('.tt-hz').style.transform = `scaleX(${EIO(tc/1.0)})`;
+    show(r.querySelector('.tt-date'), tc, .2, {dy:50, d:.8});
+    show(r.querySelector('.tt-wk'), tc, .5, {dy:20});
+    show(r.querySelector('.tt-title'), tc, .6, {dy:50, d:.8});
+    show(r.querySelector('.tt-lede'), tc, .95, {dy:20});
+    r.querySelectorAll('.tt-row').forEach((row, k) => show(row, tc, 1.3 + k*.28, {dx:60, dy:0, d:.5}));
+  } else {
+    const lg = r.querySelector('.ou-logo'); show(lg, t, 0, {dy:80, d:.9, s:.2});
+    const hp = t - (sc.hit ?? 1e9);   // logo "pops" on the jingle hit
+    if (hp > 0) lg.style.transform = `scale(${1 + .09*Math.exp(-hp*5)*Math.cos(hp*14)})`;
+    steam(r, t);
+    show(r.querySelector('.wordmark'), t, .3, {dy:40});
+    show(r.querySelector('.sub-mark'), t, .5, {dy:20});
+    show(r.querySelector('.ou-line'), t, .8, {dy:30});
+    show(r.querySelector('.ou-card'), t, 1.1, {dy:30});
+    show(r.querySelector('.ou-it'), t, 1.5, {dy:20});
+  }
+  // scene in/out fade of content
+  const fin = i === 0 ? 1 : E(t / .25), fout = 1 - E((t - (D - .3)) / .3);
+  r.style.opacity = Math.min(fin, i === DATA.scenes.length - 1 ? 1 : fout);
+  // subtitles
+  const cue = (sc.cues || []).find(c => t >= c.start && t < c.end);
+  const sub = $('#subt');
+  if (cue) { sub.style.visibility = 'visible'; if (sub.textContent !== cue.text) sub.textContent = cue.text;
+    const p = E((t - cue.start) / .12); sub.style.opacity = p; sub.style.transform = `translateY(${(1-p)*8}px)`; }
+  else sub.style.visibility = 'hidden';
+}
+// layout QA: report any element overflowing the canvas or its box
+function qa() {
+  const bad = [];
+  document.querySelectorAll('#scene *, #sub span').forEach(el => {
+    const b = el.getBoundingClientRect(); if (!b.width) return;
+    if (b.right > 1080 + 1 || b.left < -1 || b.bottom > 1920) bad.push(el.className + ' out-of-canvas');
+  });
+  const h = document.querySelector('.st-head'); if (h && h.offsetHeight > parseFloat(h.style.fontSize||104)*1.16*2 + 4) bad.push('headline > 2 lines'); else if (h && h.offsetHeight > parseFloat(h.style.fontSize||104)*1.2) bad.push('note: headline wraps to 2 lines (≤10 chars keeps it on one line)');
+  const p = document.querySelector('.st-point'); if (p && p.offsetHeight > 48*1.42*2 + 4) bad.push('point > 2 lines');
+  const s = document.querySelector('#sub span'); if (s && s.offsetHeight > 56*1.38*2 + 40) bad.push('subtitle > 2 lines');
+  const st = document.querySelector('.st-stat'); if (st && st.scrollWidth > 940) bad.push('stat too wide');
+  const fr = document.querySelector('.st-media'); if (fr && fr.offsetHeight < 400) bad.push('note: media frame squeezed (<400px) — shorten point/take');
+  const sr = document.querySelector('.st-src'); if (sr && sr.getBoundingClientRect().bottom > 1385) bad.push('source tag runs into subtitle zone');
+  const ou = document.querySelector('.ou-it'); if (ou && ou.getBoundingClientRect().bottom > 1385) bad.push('outro runs into subtitle zone');
+  const tk = document.querySelector('.st-take'); if (tk && tk.getBoundingClientRect().bottom > 1385) bad.push('take sticker runs into subtitle zone');
+  if (tk && tk.querySelector('.tx').offsetHeight > 40*1.3*1 + 6) bad.push('note: take wraps to 2 lines');
+  const tl = document.querySelector('.tt-list'); if (tl && tl.getBoundingClientRect().bottom > 1385) bad.push('rundown runs into subtitle zone');
+  return bad;
+}
+window.renderAt = renderAt; window.qa = qa;
+</script></body></html>

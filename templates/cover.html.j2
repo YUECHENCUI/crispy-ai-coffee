@@ -1,0 +1,31 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<link rel="stylesheet" href="{{ brand_css }}">
+<style>
+  html,body{width:900px;height:383px;overflow:hidden}
+  #c{position:relative;width:900px;height:383px;overflow:hidden;background:radial-gradient(700px 420px at 82% 10%,#2a1712 0%,rgba(11,13,18,0) 65%),var(--ink)}
+  .grid-bg{background-size:48px 48px}
+  .sunwrap{position:absolute;left:560px;top:0;width:340px;height:300px;overflow:hidden}
+  .sun{position:absolute;left:30px;top:118px;width:280px;height:280px;border-radius:50%;
+      background:radial-gradient(circle at 50% 30%,#FFC9A6 0%,#FF7A3D 38%,#FF5A1F 62%,#E8430F 100%)}
+  .stripe{position:absolute;left:30px;width:280px;background:var(--ink)}
+  .hz{position:absolute;left:44px;right:24px;top:300px;height:2px;background:var(--paper)}
+  .logo{position:absolute;left:44px;top:34px;gap:12px}
+  .logo .wordmark{font-size:28px}.logo .sub-mark{font-size:10px;margin-top:5px}
+  .title{position:absolute;left:44px;top:100px;font-family:var(--serif);font-weight:700;font-size:58px;line-height:1.1}
+  .title b{color:var(--sun);font-weight:700}
+  .head{position:absolute;left:46px;top:178px;width:540px;font-family:var(--sans);font-weight:700;font-size:25px;line-height:1.45;color:rgba(244,241,234,.92);text-wrap:balance}
+  .badge{position:absolute;left:44px;top:322px;font-size:15px;padding:6px 14px}
+  .badge .no{color:var(--mist);font-weight:500}
+  .date{position:absolute;right:44px;top:318px;font-family:var(--display);font-weight:800;font-size:40px;letter-spacing:-.03em;color:var(--paper)}
+  .tags{position:absolute;left:470px;top:330px;font-family:var(--mono);font-size:13px;letter-spacing:.2em;color:var(--mist)}
+</style></head><body><div id="c">
+  <div class="grid-bg"></div>
+  <div class="glow" style="left:600px;top:60px;width:260px;height:260px;background:#FF5A1F;opacity:.35;filter:blur(70px)"></div>
+  <div class="sunwrap"><div class="sun"></div><div class="stripe" style="top:240px;height:7px"></div><div class="stripe" style="top:262px;height:5px"></div><div class="stripe" style="top:282px;height:4px"></div></div>
+  <div class="hz"></div>
+  <div class="logo"><img src="{{ logo }}" width="50" height="50"><div><div class="wordmark">AI<b>早报</b></div><div class="sub-mark">Morning Brief</div></div></div>
+  <div class="title">AI 每日<b>大事件</b></div>
+  <div class="head">{{ cover_head }}</div>
+  <div class="badge"><span class="dot"></span>{{ b._date_dot }} {{ b._weekday }} <span class="no">No.{{ '%03d' % b._issue_no }}</span></div>
+  <div class="date">{{ b._md }}</div>
+</div></body></html>

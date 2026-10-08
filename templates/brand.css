@@ -1,0 +1,31 @@
+/* ===== AI 早报 · brand tokens (shared by cover, thumbnail, video) ===== */
+:root{
+  --ink:#0B0D12; --ink2:#141821; --ink3:#1C2230;
+  --paper:#F4F1EA; --paper2:#EAE5DA;
+  --sun:#FF5A1F; --sun2:#FFB38A; --sun-deep:#E8430F;
+  --mist:#8B93A1; --line:rgba(244,241,234,.09);
+  --tech:#4C7DFF; --biz:#F2B233; --gossip:#FF4D8D;
+  --serif:"Noto Serif CJK SC","Noto Serif SC","Songti SC",serif;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","PingFang SC",sans-serif;
+  --display:"Inter Tight","Inter","Noto Sans CJK SC",sans-serif;
+  --mono:"JetBrains Mono","DM Mono","Noto Sans CJK SC",monospace;
+  --italic:"Instrument Serif","Noto Serif CJK SC",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--ink);color:var(--paper);-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+.grid-bg{position:absolute;inset:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:90px 90px;background-position:-1px -1px;
+  -webkit-mask-image:radial-gradient(ellipse at 70% 20%,#000 0%,rgba(0,0,0,.55) 45%,transparent 85%);
+          mask-image:radial-gradient(ellipse at 70% 20%,#000 0%,rgba(0,0,0,.55) 45%,transparent 85%)}
+.glow{position:absolute;border-radius:50%;filter:blur(40px);pointer-events:none}
+.logo{display:flex;align-items:center;gap:18px}
+.logo img{display:block}
+.wordmark{font-family:var(--serif);font-weight:700;letter-spacing:.02em;line-height:1}
+.wordmark b{color:var(--sun);font-weight:700}
+.sub-mark{font-family:var(--mono);letter-spacing:.32em;color:var(--mist);text-transform:uppercase}
+.badge{display:inline-flex;align-items:center;gap:14px;border:2px solid var(--sun);border-radius:999px;
+  font-family:var(--mono);font-weight:600;color:var(--paper);letter-spacing:.08em}
+.badge .dot{width:12px;height:12px;border-radius:50%;background:var(--sun)}
+.chip{display:inline-flex;align-items:center;gap:12px;border-radius:999px;font-family:var(--sans);font-weight:700}
+.chip i{font-style:normal;font-family:var(--mono);font-weight:500;letter-spacing:.18em;opacity:.75}
