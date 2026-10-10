@@ -119,7 +119,7 @@ def validate_brief(b: dict) -> list:
         for k, s in enumerate(stories):
             n = s.get("narration", "")
             if s.get("segment") == "zha":
-                if k != len(stories) - 1: errs.append("the 咖啡渣时间 (segment zha) story must be the last story")
+                if k != len(stories) - 1: errs.append("the gossip (segment zha) story must be the last story")
                 if not n.startswith(cp["zha"]): errs.append(f"zha story must start with {cp['zha']}")
             elif k > 0 and not n.startswith(cp["transition"]):
                 errs.append(f"story {k + 1} must start with {cp['transition']}")

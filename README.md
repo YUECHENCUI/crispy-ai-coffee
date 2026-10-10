@@ -1,7 +1,7 @@
 # 脆脆的AI早咖啡 · CRISPY AI COFFEE
 
 每天早上 8 点（Asia/Shanghai）一条 **~85 秒的中文 AI 新闻竖版短视频**（微信视频号 1080×1920）：
-主持人「脆脆」（AI 咖啡馆里嘴快的咖啡师朋友）用 5 条昨天的 AI 大事 + 一句句「锐评」叫醒你。
+主持人「脆脆」用大白话讲清 5 条昨天的 AI 大事，每条加一句「锐评」。
 本仓库是把它**全自动生产出来**的流水线：X 上采集 → 核实 → 写 `brief.json` → **一条命令**出视频、封面、文案、QA。
 
 > 只生成文件，**不会发布**到任何平台。
@@ -40,7 +40,7 @@ D=$(TZ=Asia/Shanghai date +%F)
 每天 **07:30 Asia/Shanghai 启动，08:00 前交付**：agent 照 [`SKILL.md`](SKILL.md) 执行（X 采集 ≤25 次调用 → WebSearch 核实 → 写 brief → `run.py` → 看 contact sheet → 报告 4 个交付文件路径）。文件夹按**发布当天早上的日期**命名，内容覆盖前一天 00:00 到当天 07:30。
 
 ## 设计（已定稿）
-- **人设「脆脆」**（`assets/persona.md`）：固定开场「早上好，我是脆脆——AI新闻现磨好了，趁热喝！」、转场「下一口。」、八卦环节「咖啡渣时间，今日一瓜！」、每条「锐评：…」、收尾「咖啡见底，脑子醒了没？关注脆脆的AI早咖啡，明早八点，续杯！」。事实零加工，梗只在框架和锐评里。
+- **人设「脆脆」**（`assets/persona.md`，2026-10-11 起）：优先把事讲清楚。固定开场「早上好，我是脆脆，欢迎收看脆脆的AI早咖啡。」、转场「下一条。」、八卦「最后说个八卦。」、每条「锐评：…」（大白话，不硬梗）、收尾「关注脆脆的AI早咖啡，明天早上八点见。」。咖啡梗只留在频道名和画面视觉里，口播正文不用。
 - **声音（锁定）**：`zh-CN-YunxiNeural`，rate +14%，pitch +6Hz，写在 `assets/channel.json`；失败时重试 6 次再回退 `zh-CN-YunjianNeural` → `zh-CN-XiaoxiaoNeural`，QA 把回退判为失败。
 - **视觉**：深色编辑风（墨黑 #0B0D12 / 纸白 #F4F1EA / 日出橙 #FF5A1F），Noto Serif/Sans CJK + Inter Tight + JetBrains Mono；Logo = 咖啡杯里升起的日出（`assets/logo_coffee.svg`）。场景全部在 `templates/video.html`，Playwright 逐帧截图 → ffmpeg。
 - **★ 固定封面模板**（2026-10-09 定稿）：视频前 1.8 s 的封面态 = 9:16 首帧，中间 y 240–1680 裁出 1080×1440 = 3:4 封面。版式：品牌行 + 「第NNN杯」→ 大日期 + 咖啡杯日出插画 → 星期 → 地平线 → 2 行宋体主标题（第 2 行橙）→ 编号话题胶囊 → 「一杯咖啡的时间，看懂昨天的 AI / EVERY MORNING 08:00」。每期只改 `video.cover_title`、`video.cover_tags`；`sphkit` 检查越界与首帧一致。

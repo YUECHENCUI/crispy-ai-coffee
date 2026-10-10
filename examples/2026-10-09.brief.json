@@ -258,16 +258,16 @@
     "scenes": [
       {
         "type": "title",
-        "narration": "早上好，我是脆脆——AI新闻现磨好了，趁热喝！今天这杯偏烫：有人降价，有人借钱。"
+        "narration": "早上好，我是脆脆，欢迎收看脆脆的AI早咖啡。今天主要看：有人降价，有人借钱。"
       },
       {
         "type": "story",
         "item": "gpt6-intelligent-ui",
         "headline": "GPT-6 全量上线",
         "point": "回答里直接长出图表、按钮和小工具",
-        "narration": "ChatGPT换上GPT-6，免费用户也有份。问个菜谱，它直接给你按人数换算的小工具。锐评：AI不光写答案，开始现做小程序了。",
-        "take": "AI 不光写答案，开始现做小程序了",
-        "take_from": "AI不光",
+        "narration": "ChatGPT换上GPT-6，免费用户也有份。问个菜谱，它直接给你按人数换算的小工具。锐评：以后答案里可能直接带着能用的工具。",
+        "take": "答案里可能直接带着能用的工具",
+        "take_from": "以后答案里",
         "media": {
           "type": "video",
           "url": "https://video.twimg.com/amplify_video/2107893961461473280/vid/avc1/1280x720/juhdrcOKw2K9lzhq.mp4",
@@ -282,9 +282,9 @@
         "item": "claude-haiku-5-5",
         "headline": "Claude Haiku 5.5",
         "point": "每百万输入 token 仅 0.1 美元",
-        "narration": "下一口。Claude Haiku 5.5，平均成本降约75%，百万输入token只要0.1美元。锐评：小模型，也卷到九块九包邮了。",
-        "take": "小模型，也卷到九块九包邮了",
-        "take_from": "小模型，也",
+        "narration": "下一条。Claude Haiku 5.5，平均成本降约75%，百万输入token只要0.1美元。锐评：便宜了不少，普通人日常用也划算。",
+        "take": "便宜了不少，普通人日常用也划算",
+        "take_from": "便宜了不少",
         "media": {
           "type": "video",
           "url": "https://video.twimg.com/amplify_video/2107890134603481088/vid/avc1/1920x1080/eJtAMwe1b3JH6j1V.mp4",
@@ -300,27 +300,27 @@
         "item": "openai-722-math",
         "headline": "OpenAI 数学大放送",
         "point": "完成形式化验证的主结果仅约 162 篇",
-        "narration": "下一口。OpenAI甩出722篇AI数学论文，可据《新科学家》统计，完成形式化验证的主结果只有约162篇。锐评：作业交了七百多份，老师还没批完。",
-        "take": "作业交了七百多份，老师还没批完",
-        "take_from": "作业交了"
+        "narration": "下一条。OpenAI甩出722篇AI数学论文，可据《新科学家》统计，完成形式化验证的主结果只有约162篇。锐评：发得多，真正验过的还不到四分之一。",
+        "take": "发得多，真正验过的还不到四分之一",
+        "take_from": "发得多"
       },
       {
         "type": "story",
         "item": "ai-chip-debt",
         "headline": "借钱买算力",
         "point": "博通 500 亿 · SpaceX 400 亿美元",
-        "narration": "下一口。算力开始刷卡：华尔街日报称，博通为OpenAI芯片筹资超500亿美元，SpaceX也在谈400亿美元债务。锐评：先借钱买铲子，金子再说。",
-        "take": "先借钱买铲子，金子再说",
-        "take_from": "先借钱"
+        "narration": "下一条。华尔街日报称，博通为OpenAI芯片筹资超500亿美元，SpaceX也在谈400亿美元债务。锐评：芯片还没赚钱，先借钱把产能铺上。",
+        "take": "芯片还没赚钱，先借钱把产能铺上",
+        "take_from": "芯片还没"
       },
       {
         "type": "story",
         "item": "openai-300-bounty",
         "headline": "漏洞只值 300 美元？",
         "point": "无需密钥访问付费模型，赏金却只有 $300",
-        "narration": "咖啡渣时间，今日一瓜！有研究员称，发现能免密钥调用OpenAI付费模型的漏洞，赏金只有300美元。他说：以后不报了。锐评：漏洞VIP级，赏金小费级。",
-        "take": "漏洞 VIP 级，赏金小费级",
-        "take_from": "漏洞VIP",
+        "narration": "最后说个八卦。有研究员称，发现能免密钥调用OpenAI付费模型的漏洞，赏金只有300美元。他说：以后不报了。锐评：漏洞挺严重，赏金却只有300美元。",
+        "take": "漏洞严重，赏金却只有300美元",
+        "take_from": "漏洞挺严重",
         "segment": "zha",
         "media": {
           "type": "image",
@@ -332,17 +332,17 @@
       },
       {
         "type": "outro",
-        "narration": "咖啡见底，脑子醒了没？关注脆脆的AI早咖啡，明早八点，续杯！"
+        "narration": "关注脆脆的AI早咖啡，明天早上八点见。"
       }
     ],
-    "lede": "今天这杯偏烫：有人降价，有人借钱。"
+    "lede": "今天主要看：有人降价，有人借钱。"
   },
   "sph": {
     "title": "GPT-6全量上线，小模型打骨折",
     "description": [
       "☕ 脆脆的AI早咖啡 · 第001杯 · 10.09 周五",
       "GPT-6 全量上线，回答里能“长出”小工具；Claude Haiku 5.5 平均成本降约 75%；OpenAI 放出 722 篇 AI 数学论文；博通为 OpenAI 芯片筹资超 500 亿美元；一个漏洞只换来 300 美元赏金。",
-      "我是脆脆，每天早上 8 点，AI 新闻现磨好，趁热喝。"
+      "每天早上8点，用大白话讲清楚昨天的AI大事"
     ],
     "hashtags": [
       "#AI",

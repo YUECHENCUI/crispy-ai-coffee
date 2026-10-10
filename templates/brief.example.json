@@ -32,7 +32,7 @@
     }
   ],
   "video": {
-    "lede": "今天这杯偏TODO：TODO，TODO。",
+    "lede": "今天主要看：TODO，TODO。",
     "cover_title": [
       "TODO 第1行 ≤9字",
       "TODO 第2行 ≤9字(橙)"
@@ -47,14 +47,14 @@
     "scenes": [
       {
         "type": "title",
-        "narration": "早上好，我是脆脆——AI新闻现磨好了，趁热喝！今天这杯偏TODO：TODO，TODO。"
+        "narration": "早上好，我是脆脆，欢迎收看脆脆的AI早咖啡。今天主要看：TODO，TODO。"
       },
       {
         "type": "story",
         "item": "TODO-kebab-id",
         "headline": "TODO ≤10字",
         "point": "TODO ≤20字",
-        "narration": "TODO 事实句。TODO 数字句。锐评：TODO ≤16字。",
+        "narration": "TODO 谁做了什么。TODO 关键数字/影响。锐评：TODO 大白话一句（意味着什么）。",
         "take": "TODO ≤20字",
         "media": {
           "type": "video",
@@ -70,7 +70,7 @@
         "item": "TODO-id-2",
         "headline": "TODO",
         "point": "TODO",
-        "narration": "下一口。TODO。锐评：TODO。",
+        "narration": "下一条。TODO。锐评：TODO。",
         "take": "TODO"
       },
       {
@@ -78,7 +78,7 @@
         "item": "TODO-id-3",
         "headline": "TODO",
         "point": "TODO",
-        "narration": "下一口。TODO。锐评：TODO。",
+        "narration": "下一条。TODO。锐评：TODO。",
         "take": "TODO"
       },
       {
@@ -87,12 +87,12 @@
         "segment": "zha",
         "headline": "TODO",
         "point": "TODO",
-        "narration": "咖啡渣时间，今日一瓜！TODO（保留“称/据报道”）。锐评：TODO。",
+        "narration": "最后说个八卦。TODO（保留“称/据报道”）。锐评：TODO。",
         "take": "TODO"
       },
       {
         "type": "outro",
-        "narration": "咖啡见底，脑子醒了没？关注脆脆的AI早咖啡，明早八点，续杯！"
+        "narration": "关注脆脆的AI早咖啡，明天早上八点见。"
       }
     ]
   },
@@ -101,7 +101,7 @@
     "description": [
       "☕ 脆脆的AI早咖啡 · 第NNN杯 · MM.DD 周X",
       "TODO 一句串起本期各条（分号隔开）",
-      "我是脆脆，每天早上 8 点，AI 新闻现磨好，趁热喝。"
+      "每天早上8点，用大白话讲清楚昨天的AI大事"
     ],
     "hashtags": [
       "#AI",

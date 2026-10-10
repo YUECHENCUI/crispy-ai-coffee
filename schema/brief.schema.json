@@ -31,7 +31,7 @@
       "required": ["cover_title", "cover_tags", "scenes"],
       "properties": {
         "voice_override": {"type": "object", "description": "Normally ABSENT: voice is locked in assets/channel.json"},
-        "lede": {"type": "string", "maxLength": 30, "description": "今天这杯偏X：A，B。"},
+        "lede": {"type": "string", "maxLength": 30, "description": "今天主要看：A，B。（plain; no coffee flavor）"},
         "cover_title": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "string", "maxLength": 12}},
         "cover_tags": {"type": "array", "minItems": 4, "maxItems": 5, "items": {"type": "string", "maxLength": 10}},
         "scenes": {
@@ -46,7 +46,7 @@
               "point": {"type": "string", "maxLength": 26},
               "take": {"type": "string", "maxLength": 20, "description": "On-screen 脆脆锐评 sticker"},
               "take_from": {"type": "string"},
-              "segment": {"enum": ["zha"], "description": "咖啡渣时间 card (gossip, last story only)"},
+              "segment": {"enum": ["zha"], "description": "gossip card (last story); narration 「最后说个八卦。」; on-screen stamp stays 「咖啡渣时间」"},
               "media": {
                 "type": "object", "required": ["url", "page", "credit"],
                 "description": "Optional official image/clip. Only from the story's official X post / official page / press kit.",

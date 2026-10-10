@@ -8,6 +8,8 @@ description: Produce one daily episode of 「脆脆的AI早咖啡」 (Chinese ~8
 Repo root = this folder. Detail lives in `assets/persona.md` (voice bible) and `README.md`; don't re-read them unless stuck.
 **Never post/publish anything.** Output only files.
 
+**Writing (from 2026-10-11 / 第003杯):** Priority #1 = explain each story clearly in plain spoken Chinese. Coffee wordplay only in the fixed opening + sign-off (channel name). 锐评 = one short plain sentence (friend explaining), no forced puns. See `assets/persona.md`.
+
 ## 0. Setup check (10 s)
 `[ -x .venv/bin/python ] || ./setup.sh` · `D=$(TZ=Asia/Shanghai date +%F)` (= publish morning = folder name `output/$D/`)
 `.venv/bin/python run.py --init --date $D` → creates `output/$D/brief.json` (fill-in template).
@@ -26,15 +28,22 @@ Repo root = this folder. Detail lives in `assets/persona.md` (voice bible) and `
 
 ## 2. Choose (5 stories for the video, 6–9 items in brief)
 - Heat = likes + 3×reposts + 2×quotes of the original post; prefer in-window, new developments only.
-- Mix: ≥2 tech, ≥1 biz, exactly 1 gossip/people (last, 咖啡渣时间); ≤3 from one company.
+- Mix: ≥2 tech, ≥1 biz, exactly 1 gossip/people (last, `"segment":"zha"`); ≤3 from one company.
 - Drop anything without a first-party post or a credible outlet; no crypto/marketing.
 - **Cross-check every chosen story with WebSearch** (official page or credible media); put ≥2 URLs in `sources`.
 
 ## 3. Write `output/$D/brief.json` (schema: `schema/brief.schema.json`; validator enforces it)
 - Facts/numbers/quotes exactly as sources say; reports keep 「据《X》报道/称」; uncertain → leave out.
-- Fixed lines (validator checks): opening **「早上好，我是脆脆——AI新闻现磨好了，趁热喝！」**+「今天这杯偏〔烫/苦/甜/浓/冲〕：A，B。」 · story 2+ starts **「下一口。」** · gossip (last, `"segment":"zha"`) starts **「咖啡渣时间，今日一瓜！」** · every story ends **「锐评：…」**(≤16字, opinion, analogy/contrast, no new facts) + `take` (≤20字 on screen) · outro exactly **「咖啡见底，脑子醒了没？关注脆脆的AI早咖啡，明早八点，续杯！」**
+- **Priority #1 — explain clearly:** each story = what happened · who · key number · why it matters to an ordinary person, in plain spoken Chinese.
+- Fixed lines (validator checks via `assets/channel.json` catchphrases):
+  - opening **「早上好，我是脆脆，欢迎收看脆脆的AI早咖啡。」** (+ optional 「今天主要看：A，B。」 — no coffee flavor)
+  - story 2+ starts **「下一条。」**
+  - gossip (last, `"segment":"zha"`) starts **「最后说个八卦。」** (on-screen pink「咖啡渣时间」card stays)
+  - every story ends **「锐评：…」**(≤16字, plain opinion — what it means / what to watch for; no forced puns/slang/analogies; no new facts) + `take` (≤20字 on screen)
+  - outro exactly **「关注脆脆的AI早咖啡，明天早上八点见。」**
+- Drop from narration: 现磨 / 趁热喝 / 下一口 / 今天这杯 / 咖啡见底 / 续杯 / 咖啡渣时间 / 今日一瓜 (banned list enforces).
 - Story = fact → number → 锐评, 55–75 字; total narration 360–420 字 (≈80–90 s). Short sentences, 你 not 大家, no 新闻腔/过气网络词 (validator bans list in `assets/channel.json`). Write numbers as digits, `$300`→`300美元`, no brackets/emoji.
-- `headline` ≤10字, `point` ≤20字, `video.cover_title` 2×≤9字, `cover_tags` 4–5, `sph` title 6–16字 + 3 lines + 3–6 hashtags. Voice is locked in `assets/channel.json` — don't set it.
+- `headline` ≤10字, `point` ≤20字, `video.cover_title` 2×≤9字, `cover_tags` 4–5, `sph` title 6–16字 + 3 lines + 3–6 hashtags. Last description line plain: **「每天早上8点，用大白话讲清楚昨天的AI大事」** (or same idea). Voice is locked in `assets/channel.json` — don't set it.
 - **Media (optional, 0–3 stories):** only official visuals of that story (its official X post attachment, official page/press kit, or the source person's own screenshot). `media: {url, page, credit, type, start, end, fit}`; clips muted & auto-trimmed; `start` skips intro logos, `end` freezes on a meaningful frame (product name/UI) instead of a blank end card. No stock/random/other-outlet images, never AI-generated images of real people/products. Nothing suitable → omit.
 
 ## 4. Run (one command, ~2–3 min, cached reruns)
