@@ -37,14 +37,14 @@ D=$(TZ=Asia/Shanghai date +%F)
 - `brief.json` 结构：`schema/brief.schema.json`（validate 步骤会按 schema + 人设规则检查），模板 `templates/brief.example.json`，完整示例 `examples/2026-10-09.brief.json`。
 
 ## 定时任务
-每天 **07:30 Asia/Shanghai 启动，08:00 前交付**：agent 照 [`SKILL.md`](SKILL.md) 执行（X 采集 ≤25 次调用 → WebSearch 核实 → 写 brief → `run.py` → 看 contact sheet → 报告 4 个交付文件路径）。文件夹按**发布当天早上的日期**命名，内容覆盖前一天 00:00 到当天 07:30。
+每天 **07:30 Asia/Shanghai 启动，08:00 前交付**：agent 照 [`SKILL.md`](SKILL.md) 执行（X 按主题桶采集 ≤25 次调用 → WebSearch 核实 → 写 brief → `run.py` → 看 contact sheet → 报告 4 个交付文件路径）。文件夹按**发布当天早上的日期**命名，内容覆盖前一天 00:00 到当天 07:30。**选题（第004杯起）**：LLM 是主线，但每期 ≤2 条纯大模型实验室、≥2 条非 LLM（机器人/多模态/科学/资本芯片等）、**≥1 条生活向/有趣应用**；头条公司不连续两天重复。
 
 ## 设计（已定稿）
 - **人设「脆脆」**（`assets/persona.md`，2026-10-11 起）：优先把事讲清楚。固定开场「早上好，我是脆脆，欢迎收看脆脆的AI早咖啡。」、转场「下一条。」、八卦「最后说个八卦。」、每条「锐评：…」（大白话，不硬梗）、收尾「关注脆脆的AI早咖啡，明天早上八点见。」。咖啡梗只留在频道名和画面视觉里，口播正文不用。
 - **声音（锁定）**：`zh-CN-YunxiNeural`，rate +14%，pitch +6Hz，写在 `assets/channel.json`；失败时重试 6 次再回退 `zh-CN-YunjianNeural` → `zh-CN-XiaoxiaoNeural`，QA 把回退判为失败。
 - **视觉**：深色编辑风（墨黑 #0B0D12 / 纸白 #F4F1EA / 日出橙 #FF5A1F），Noto Serif/Sans CJK + Inter Tight + JetBrains Mono；Logo = 咖啡杯里升起的日出（`assets/logo_coffee.svg`）。场景全部在 `templates/video.html`，Playwright 逐帧截图 → ffmpeg。
 - **★ 固定封面模板**（2026-10-09 定稿）：视频前 1.8 s 的封面态 = 9:16 首帧，中间 y 240–1680 裁出 1080×1440 = 3:4 封面。版式：品牌行 + 「第NNN杯」→ 大日期 + 咖啡杯日出插画 → 星期 → 地平线 → 2 行宋体主标题（第 2 行橙）→ 编号话题胶囊 → 「一杯咖啡的时间，看懂昨天的 AI / EVERY MORNING 08:00」。每期只改 `video.cover_title`、`video.cover_tags`；`sphkit` 检查越界与首帧一致。
-- **新闻卡**：分类标签、标题、计数动画数字、要点、来源、「脆脆锐评」贴纸（说到“锐评”时弹出）；八卦条为粉色「咖啡渣时间 · 今日一瓜」印章卡。
+- **新闻卡**：分类标签（`tech` 技术蓝 `#4C7DFF` · `app` 应用青绿 `#2EC4B6` · `hardtech` 硬科技紫 `#9B6BFF` · `science` 科学绿 `#5AD67D` · `capital` 资本金 `#F2B233` · `biz` 商业琥珀 `#E8A017` · `gossip` 八卦粉 `#FF4D8D`）、标题、计数动画数字、要点、来源、「脆脆锐评」贴纸；八卦条为粉色「咖啡渣时间 · 今日一瓜」印章卡。话题标签：固定 `#AI` `#科技新闻` `#脆脆的AI早咖啡` + 每期 1–3 个选题标签（如 `#特斯拉` `#机器人`）。
 - **官方画面（可选）**：条目有官方演示视频/发布图/原帖截图时，卡片换成带框的素材版式（静音、按场景时长截取、`cover`/`contain` 裁切、右下角署名）。只用该新闻官方 X 原帖附件、官方网页/新闻稿或当事人原帖截图；找不到就不用；**绝不用 AI 生成的真人/真实产品图**。规则详见 `assets/persona.md` §8。
 - **音乐**（`assets/music/`，原创）：`compose.py` 用 numpy/scipy 从零合成（120 BPM，C–Am–F–G，2 小节问答钩子 + “咖啡杯叮”），片头 sting / 4 小节无缝循环垫乐（人声下自动闪避到 −19.5 dB）/ 片尾 hit / 转场叮。总混音 −14 LUFS，真峰值 ≤ −1 dBTP。
 

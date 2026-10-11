@@ -11,11 +11,15 @@ WEEKDAYS = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"
 WEEKDAYS_EN = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
 
 CATEGORIES = {
-    "tech":   {"zh": "技术", "en": "TECH",   "color": "#4C7DFF"},
-    "biz":    {"zh": "商业", "en": "BIZ",    "color": "#F2B233"},
-    "gossip": {"zh": "八卦·人物", "en": "PEOPLE", "color": "#FF4D8D"},
+    "tech":     {"zh": "技术", "en": "TECH",   "color": "#4C7DFF"},  # LLM / models / core AI
+    "app":      {"zh": "应用", "en": "APP",    "color": "#2EC4B6"},  # everyday-life / fun / viral consumer AI
+    "hardtech": {"zh": "硬科技", "en": "HARD", "color": "#9B6BFF"},  # robotics, autonomy, chips hw
+    "science":  {"zh": "科学", "en": "SCI",    "color": "#5AD67D"},  # AI+science / math / bio
+    "capital":  {"zh": "资本", "en": "CAP",    "color": "#F2B233"},  # funding, markets, IPOs
+    "biz":      {"zh": "商业", "en": "BIZ",    "color": "#E8A017"},  # business strategy (non-deal)
+    "gossip":   {"zh": "八卦·人物", "en": "PEOPLE", "color": "#FF4D8D"},
 }
-CATEGORY_ORDER = ["tech", "biz", "gossip"]
+CATEGORY_ORDER = ["tech", "app", "hardtech", "science", "capital", "biz", "gossip"]
 
 
 VARIANT = None   # e.g. "v2" -> output/DATE/v2/ (set by run.py --variant)

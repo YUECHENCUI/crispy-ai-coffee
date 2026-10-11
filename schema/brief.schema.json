@@ -16,7 +16,7 @@
         "required": ["id", "category", "title", "summary", "why", "key_stat", "heat", "sources"],
         "properties": {
           "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
-          "category": {"enum": ["tech", "biz", "gossip"]},
+          "category": {"enum": ["tech", "app", "hardtech", "science", "capital", "biz", "gossip"], "description": "tech=LLM/core · app=应用/多模态/消费 · hardtech=硬科技/机器人/自动驾驶 · science=科学 · capital=资本 · biz=商业 · gossip=八卦"},
           "title": {"type": "string", "maxLength": 48},
           "summary": {"type": "string", "description": "2–3 sentences: who, when, what, key number; attribute reports (据《华尔街日报》)"},
           "why": {"type": "string"},
