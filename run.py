@@ -4,7 +4,7 @@
   .venv/bin/python run.py --date 2026-10-10          # validate → tts → media → video → sphkit → qa, compact summary
   .venv/bin/python run.py --init --date 2026-10-10   # create output/DATE/brief.json from templates/brief.example.json
   options: --force [step,...]  ignore cache (all steps, or the listed ones)   --verbose  stream full logs
-           --steps a,b         run only these steps (also: stills, samples, samples_young_male, samples_tw, article, cover, preview)
+           --steps a,b         run only these steps (also: stills, samples, samples_young_male, samples_tw, publish, article, cover, preview)
            --with-article      also build the optional 公众号 article/cover/preview      --variant v2  use output/DATE/v2/
 
 --date = PUBLISH morning (Asia/Shanghai); the episode covers the previous day. Writing brief.json is the agent's job (SKILL.md).
@@ -20,7 +20,7 @@ from pipeline import common  # noqa: E402
 
 DEFAULT = ["validate", "tts", "media", "video", "sphkit", "qa"]
 ARTICLE = ["article", "cover", "preview"]
-EXTRA = ["stills", "samples", "samples_young_male", "samples_tw"]
+EXTRA = ["stills", "samples", "samples_young_male", "samples_tw", "publish"]
 CACHED = {"tts", "media", "video", "sphkit"}
 
 
@@ -69,6 +69,7 @@ def _run_step(s, a):
     elif s == "media": media.run(a.date)
     elif s == "video": render_video.run(a.date, workers=a.workers, bgm=a.bgm, use_music=not a.no_music)
     elif s == "sphkit": sph_kit.run(a.date)
+    elif s == "publish": sph_kit.write_texts(a.date)  # caption+publish.json only, no re-render
     elif s == "qa": return qa.run(a.date)
     elif s == "article": render_article.run(a.date)
     elif s == "cover": render_cover.run(a.date)

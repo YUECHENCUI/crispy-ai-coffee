@@ -68,7 +68,7 @@
     "sph": {
       "type": "object", "required": ["title", "description", "hashtags"],
       "properties": {
-        "title": {"type": "string", "minLength": 6, "maxLength": 16},
+        "title": {"type": "string", "minLength": 6, "maxLength": 16, "description": "短标题 ≤16; 视频号助手: only 《》quotes :：+？?%℃; commas→spaces"},
         "description": {"type": "array", "minItems": 1, "maxItems": 3, "items": {"type": "string"}},
         "hashtags": {"type": "array", "minItems": 3, "maxItems": 6, "items": {"type": "string", "pattern": "^#"}}
       }

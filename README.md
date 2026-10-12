@@ -14,6 +14,7 @@
 | `sph/cover_3x4_1080x1440.png` | 视频号封面（固定模板，见下） |
 | `sph/cover_9x16_1080x1920.png` | 同一画面 = 视频第一帧 |
 | `sph/caption.txt` | 短标题 / 1–3 行描述 / 3–6 个话题 |
+| `sph/publish.json` | 视频号助手发布交接（绝对路径 video/cover、清洗后 short_title、description、publish_at） |
 | `sph/sources.txt` | 每条新闻的来源链接（自查 / 置顶评论） |
 | `qa/contact_sheet.png` | 一张图看全片关键帧（封面、片头、每条锐评时刻、片尾、3:4 封面） |
 | `media/` | 本期用到的官方图片/视频（来源记录在 `video/media_manifest.json`） |

@@ -1,5 +1,5 @@
 """Shared paths / helpers for the 脆脆的AI早咖啡 pipeline."""
-import json, datetime, subprocess
+import json, datetime, subprocess, re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -20,6 +20,26 @@ CATEGORIES = {
     "gossip":   {"zh": "八卦·人物", "en": "PEOPLE", "color": "#FF4D8D"},
 }
 CATEGORY_ORDER = ["tech", "app", "hardtech", "science", "capital", "biz", "gossip"]
+
+
+# 视频号助手 short-title: keep 《》 quotes : + ? % ℃ ; turn ，、;!。 etc. into spaces
+_SHORT_TITLE_KEEP = set("《》「」『』""''＂＇:：+？?%℃°")
+
+
+def sanitize_short_title(title: str, max_len: int = 16) -> str:
+    """Replace disallowed punctuation with a single space, collapse spaces, cap ≤16 chars."""
+    chars = []
+    for c in title or "":
+        if c.isspace():
+            chars.append(" ")
+        elif c.isalnum() or "一" <= c <= "鿿" or c in _SHORT_TITLE_KEEP:
+            chars.append(c)
+        elif "㐀" <= c <= "䶿" or "豈" <= c <= "﫿":
+            chars.append(c)
+        else:
+            chars.append(" ")
+    return re.sub(r" +", " ", "".join(chars)).strip()[:max_len].rstrip()
+
 
 
 VARIANT = None   # e.g. "v2" -> output/DATE/v2/ (set by run.py --variant)
@@ -141,6 +161,15 @@ def validate_brief(b: dict) -> list:
         tags = sph.get("hashtags", [])
         if not 3 <= len(tags) <= 6: errs.append(f"sph.hashtags should have 3–6 tags (has {len(tags)})")
         if not sph.get("title"): errs.append("sph.title missing")
+        else:
+            raw = sph["title"]
+            clean = sanitize_short_title(raw)
+            if not clean:
+                errs.append("sph.title empty after 视频号助手 sanitization")
+            elif raw.strip() != clean:
+                errs.append(f"sph.title has punctuation 视频号助手 rejects — write it as: {clean!r} (commas→spaces; only 《》引号:：+？?%℃ allowed)")
+            elif not 1 <= len(clean) <= 16:
+                errs.append(f"sph.title length {len(clean)} — want ≤16 after sanitize")
         if not 1 <= len(sph.get("description", [])) <= 3: errs.append("sph.description should be 1–3 lines")
     return errs
 

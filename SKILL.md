@@ -60,6 +60,7 @@ Peek yesterday's lead company in `output/` (or last delivered caption) so you do
 - Story = fact → number → 锐评, 55–75 字; total narration 360–420 字 (≈80–90 s). Short sentences, 你 not 大家, no 新闻腔/过气网络词 (validator bans list in `assets/channel.json`). Write numbers as digits, `$300`→`300美元`, no brackets/emoji.
 - `headline` ≤10字, `point` ≤20字, `video.cover_title` 2×≤9字, `cover_tags` 4–5.
 - **Hashtags:** fixed `#AI` `#科技新闻` `#脆脆的AI早咖啡` + **1–3 per-episode topic tags** from today's stories (e.g. `#特斯拉` `#机器人` `#ChatGPT`); total 3–6. Last description line: **「每天早上8点，用大白话讲清楚昨天的AI大事」**. Voice locked in `assets/channel.json` — don't set it.
+- **短标题 (`sph.title`):** 视频号助手 rejects most punctuation. Only keep 《》 引号 `:` `：` `+` `？` `?` `%` `℃`. Commas `，` `、` and `！` `。` `;` etc. → **spaces** (validator enforces; generator also sanitizes). ≤16 chars.
 - **Media (optional, 0–3 stories):** only official visuals of that story (its official X post attachment, official page/press kit, or the source person's own screenshot). `media: {url, page, credit, type, start, end, fit}`; clips muted & auto-trimmed; `start` skips intro logos, `end` freezes on a meaningful frame. No stock/random/other-outlet images, never AI-generated images of real people/products. Nothing suitable → omit.
 
 ## 4. Run (one command, ~2–3 min, cached reruns)
@@ -70,7 +71,9 @@ Prints PASS/FAIL + paths. On FAIL it shows the reason and log tail: fix brief.js
 Read `output/$D/qa/contact_sheet.png` (cover/first frame, intro, every story at its 锐评 moment, outro, 3:4 cover). Look for: tofu boxes, clipped/overlapping text, subtitles >2 lines, media frame cropping something important, wrong credit. Fix → rerun.
 
 ## 6. Deliver (report paths + 1-line summary; do NOT upload)
-`output/$D/crispy-ai-coffee-$D.mp4` · `output/$D/sph/cover_3x4_1080x1440.png` · `output/$D/sph/caption.txt` · `output/$D/sph/sources.txt` (+ the 5 stories with sources, duration, media used, anything unverified).
+`output/$D/crispy-ai-coffee-$D.mp4` · `output/$D/sph/cover_3x4_1080x1440.png` · `output/$D/sph/caption.txt` · `output/$D/sph/publish.json` · `output/$D/sph/sources.txt` (+ the 5 stories with sources, duration, media used, anything unverified).
+
+**After QA:** hand off `output/$D/sph/publish.json` to the 视频号 scheduled-publish step (browser). It has absolute `video` / `cover` paths, sanitized `short_title`, `description` (【描述】 lines + hashtag line), and `publish_at` (`YYYY-MM-DD 08:00`). To refresh caption/publish without re-rendering: `.venv/bin/python run.py --date $D --steps publish`.
 
 ## Failure handling
 - TTS/network: pipeline retries 6× then falls back (QA fails on fallback) → wait 1–2 min, `run.py --date $D --force tts`.
