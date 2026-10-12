@@ -6,6 +6,11 @@ Outputs (in output/DATE/video/):
 import asyncio, json, re
 from pathlib import Path
 import edge_tts
+# 2026-10: Microsoft returns 403 on the legacy speech.platform.bing.com websocket
+# (rany2/edge-tts#490). Use the new api.msedgeservices.com host with the legacy token.
+import edge_tts.communicate as _etc
+from edge_tts.constants import TRUSTED_CLIENT_TOKEN as _ETT
+_etc.WSS_URL = f"wss://api.msedgeservices.com/tts/cognitiveservices/websocket/v1?Ocp-Apim-Subscription-Key={_ETT}"
 from .common import out_dir, load_brief, ffprobe_duration, channel
 
 GAP = 0.30          # silence (s) appended after each scene's voice
